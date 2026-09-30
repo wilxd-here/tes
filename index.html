@@ -86,7 +86,7 @@
         .section-title span { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
 
         /* --- HERO (PROFILE) SECTION --- */
-        #home { align-items: center; background: radial-gradient(circle at top right, var(--bg-tertiary) 0%, var(--bg-main) 60%); transition: var(--transition); }
+      #home { align-items: center; background: transparent; transition: var(--transition); }
         .profile-container { display: flex; align-items: center; justify-content: space-between; gap: 50px; width: 100%; max-width: 1000px; margin: 0 auto; }
         
         .profile-content { flex: 1; }
@@ -129,38 +129,65 @@
             transform: translateY(-5px); border-color: var(--text-primary); box-shadow: 0 0 20px var(--accent);
         }
 
-        /* --- ABOUT & BUBBLES ARENA SECTION --- */
-        #about { background: transparent; transition: var(--transition); }
-        .about-container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        .about-desc { max-width: 700px; text-align: center; color: var(--text-secondary); font-size: 16px; }
-        .click-hint { font-size: 14px; color: var(--accent); font-style: italic; animation: pulse 2s infinite; text-shadow: 0 0 8px var(--accent-glow); }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+/* --- ABOUT SECTION (FULL WIDTH) --- */
+#about { 
+    padding: 100px 0; /* Setel padding kiri-kanan jadi 0 khusus section about */
+    background: transparent; 
+    transition: var(--transition); 
+}
 
-        /* --- ARENA GELEMBUNG 3D --- */
-        .bubble-arena {
-            position: relative; 
-            width: 100%; max-width: 800px; height: 500px; 
-            margin: 20px auto;
-            border: 1px solid var(--bg-tertiary); 
-            border-radius: 20px; 
-            background: radial-gradient(circle, var(--bg-tertiary) 0%, var(--bg-main) 100%);
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
-            perspective: 1200px; /* Kunci efek 3D */
-            display: flex; justify-content: center; align-items: center;
-            overflow: hidden; transition: var(--transition);
-        }
+/* Jaga agar Judul dan Deskripsi tetap rapi sejajar dengan section lain */
+#about .section-title,
+#about .about-desc,
+#about .click-hint {
+    padding-left: 10%;
+    padding-right: 10%;
+}
 
+/* --- ARENA GELEMBUNG 3D (FULL KIRI-KANAN) --- */
+.bubble-arena {
+    position: relative; 
+    width: 100%; 
+    height: 500px; 
+    margin: 40px 0;
+    
+    /* GANTI BAGIAN INI: Hilangkan border dan kurangi efek shadow agar tidak berat */
+    border: none;
+    border-radius: 0; 
+    
+    background: linear-gradient(rgba(10, 5, 15, 0.75), rgba(10, 5, 15, 0.85)), 
+                url('background2.jpg') no-repeat center center;
+    background-size: cover;
+    
+    /* Box shadow bisa dibiarkan atau dihapus (hapus untuk performa maksimal) */
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.6);
+    perspective: 1200px; 
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden; 
+    transition: var(--transition);
+}
+
+
+        /* --- KEMBALIKAN BENTUK KACA GELEMBUNG --- */
         .bubble {
-            position: absolute; width: 70px; height: 70px; 
+            position: absolute; /* Kunci utama agar gelembung bisa mengorbit 3D dan tidak lag */
+            width: 70px; 
+            height: 70px; 
             background: rgba(20, 20, 25, 0.7);
-            backdrop-filter: blur(5px); /* Efek glassmorphism */
-            border: 1px solid var(--accent); border-radius: 50%;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--accent); 
+            border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
             font-size: 30px; color: var(--text-primary); cursor: pointer;
             box-shadow: 0 0 15px var(--accent-glow);
-            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            transition: background-color 0.3s, border-color 0.3s, transform 0.1s;
         }
-        .bubble:hover { background: var(--accent); color: #000; box-shadow: 0 0 30px var(--accent); }
+        
+        .bubble:hover { 
+            background: var(--accent); 
+            color: #000; 
+            box-shadow: 0 0 30px var(--accent); 
+        }
 
         /* --- PORTFOLIO & CONTACT --- */
 #portfolio { background: transparent; transition: var(--transition); }
@@ -173,7 +200,7 @@
         .portfolio-info p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
         .portfolio-link { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 5px; color: var(--accent); }
 
-        #contact { background-color: var(--bg-secondary); text-align: center; transition: var(--transition); }
+      #contact { background: transparent; text-align: center; transition: var(--transition); }
         .contact-content { max-width: 600px; margin: 0 auto; }
         .contact-content p { color: var(--text-secondary); margin-bottom: 40px; }
         .contact-info { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; }
@@ -195,6 +222,11 @@
             .nav-links a { display: none; }
             .presets-wrapper { display: none; }
         }
+      /* Class tambahan untuk mematikan animasi saat mode RGB aktif */
+.no-transition * {
+    transition: none !important;
+}
+
     </style>
 </head>
 <body>
@@ -375,28 +407,37 @@
             colorPicker.addEventListener("input", (e) => setHue(hexToHue(e.target.value)));
             randomBtn.addEventListener("click", () => { playCyberBeep(800); setHue(Math.floor(Math.random() * 360)); });
             rainbowBtn.addEventListener("click", () => {
-                playCyberBeep(1000);
-                if (rainbowInterval) {
-                    clearInterval(rainbowInterval); rainbowInterval = null; rainbowBtn.classList.remove("active");
-                } else {
-                    rainbowBtn.classList.add("active");
-                    rainbowInterval = setInterval(() => { currentHue = (currentHue + 2) % 360; setHue(currentHue, false); }, 50);
-                }
-            });
-            presetDots.forEach(dot => dot.addEventListener("click", () => { playCyberBeep(700); setHue(parseInt(dot.getAttribute("data-h"))); }));
+    playCyberBeep(1000);
+    if (rainbowInterval) {
+        clearInterval(rainbowInterval); 
+        rainbowInterval = null; 
+        rainbowBtn.classList.remove("active");
+        
+        // Nyalakan kembali efek transisi yang mulus saat RGB dimatikan
+        document.body.classList.remove("no-transition");
+    } else {
+        rainbowBtn.classList.add("active");
+        
+        // Matikan transisi CSS agar browser tidak lag saat warna berubah cepat
+        document.body.classList.add("no-transition"); 
+        
+        rainbowInterval = setInterval(() => { 
+            currentHue = (currentHue + 2) % 360; 
+            setHue(currentHue, false); 
+        }, 50); // Kamu juga bisa mengubah angka 50 ini ke 100 agar interval lebih santai
+    }
+});
 
-            const savedHue = localStorage.getItem("themeHue");
-            if (savedHue !== null) setHue(parseInt(savedHue));
-
-
-            // --- LOGIKA 3D ORBIT SPHERE ---
+            // --- LOGIKA 3D ORBIT SPHERE (DISEMPURNAKAN) ---
             const arena = document.getElementById("arena");
             const bubbleEls = document.querySelectorAll(".bubble");
 
-            let targetX = 0.005; // Auto-rotate speed X
-            let targetY = 0.005; // Auto-rotate speed Y
-            let rotationX = 0;
-            let rotationY = 0;
+            let targetX = 0.005; 
+            let targetY = 0.005; 
+            let rotationVelocityX = 0;
+            let rotationVelocityY = 0;
+            let angleX = 0; // Sudut akumulasi X
+            let angleY = 0; // Sudut akumulasi Y
             const radius = 180; 
             let bubbles = [];
 
@@ -409,9 +450,10 @@
 
                 bubbles.push({
                     el: el,
-                    x: Math.cos(theta) * radiusAtY * radius,
-                    y: y * radius,
-                    z: Math.sin(theta) * radiusAtY * radius
+                    // Simpan koordinat awal secara permanen (Base Coordinates)
+                    baseX: Math.cos(theta) * radiusAtY * radius,
+                    baseY: y * radius,
+                    baseZ: Math.sin(theta) * radiusAtY * radius
                 });
                 
                 el.addEventListener("click", () => playCyberBeep(600 + (i * 20)));
@@ -422,37 +464,55 @@
                 const rect = arena.getBoundingClientRect();
                 const x = e.clientX - rect.left - (rect.width / 2);
                 const y = e.clientY - rect.top - (rect.height / 2);
-                targetY = x * 0.0001; 
-                targetX = -y * 0.0001;
+                targetY = x * 0.00008; // Sedikit diturunkan agar lebih stabil
+                targetX = -y * 0.00008;
             });
-            arena.addEventListener("mouseleave", () => { targetX = 0.002; targetY = 0.005; });
+            arena.addEventListener("mouseleave", () => { 
+                targetX = 0.002; 
+                targetY = 0.004; 
+            });
 
             // Engine Animasi
             function animate3D() {
-                rotationX += (targetX - rotationX) * 0.1;
-                rotationY += (targetY - rotationY) * 0.1;
+                // Easing (kehalusan pergerakan)
+                rotationVelocityX += (targetX - rotationVelocityX) * 0.05;
+                rotationVelocityY += (targetY - rotationVelocityY) * 0.05;
 
-                let cosX = Math.cos(rotationX), sinX = Math.sin(rotationX);
-                let cosY = Math.cos(rotationY), sinY = Math.sin(rotationY);
+                // Akumulasi sudut rotasi global
+                angleX += rotationVelocityX;
+                angleY += rotationVelocityY;
+
+                let cosX = Math.cos(angleX), sinX = Math.sin(angleX);
+                let cosY = Math.cos(angleY), sinY = Math.sin(angleY);
 
                 bubbles.forEach(b => {
-                    let y1 = b.y * cosX - b.z * sinX;
-                    let z1 = b.y * sinX + b.z * cosX;
-                    let x2 = b.x * cosY + z1 * sinY;
-                    let z2 = -b.x * sinY + z1 * cosY;
-
-                    b.x = x2; b.y = y1; b.z = z2;
+                    // Rotasi dihitung berdasarkan baseX, baseY, baseZ (bukan menimpa nilai yang sama terus)
+                    let y1 = b.baseY * cosX - b.baseZ * sinX;
+                    let z1 = b.baseY * sinX + b.baseZ * cosX;
+                    let x2 = b.baseX * cosY + z1 * sinY;
+                    let z2 = -b.baseX * sinY + z1 * cosY;
 
                     const scale = (z2 + 300) / 300; 
                     const opacity = (z2 + radius) / (radius * 2);
+                    const isFront = z2 > 0; // Deteksi jika gelembung ada di depan
 
-                    b.el.style.transform = `translate3d(${b.x}px, ${b.y}px, ${b.z}px) scale(${scale})`;
-                    b.el.style.opacity = Math.max(0.2, opacity);
+                    b.el.style.transform = `translate3d(${x2}px, ${y1}px, ${z2}px) scale(${scale})`;
+                    b.el.style.opacity = Math.max(0.15, opacity);
                     b.el.style.zIndex = Math.round(z2 + radius);
+                    
+                    // Efek neon dinamis: menyala lebih terang saat berada di depan
+                    if (isFront) {
+                        b.el.style.boxShadow = `0 0 ${15 * scale}px var(--accent-glow)`;
+                        b.el.style.backdropFilter = `blur(${5 * scale}px)`;
+                    } else {
+                        b.el.style.boxShadow = 'none';
+                        b.el.style.backdropFilter = 'blur(2px)';
+                    }
                 });
                 requestAnimationFrame(animate3D);
             }
             animate3D();
+
         });
     </script>
 </body>
