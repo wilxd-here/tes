@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio Profesional - Wilxd</title>
-        <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Orbitron (Judul), Rajdhani (Body), Share Tech Mono (UI) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <!-- FontAwesome & DevIcons untuk Ikon Teknologi -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.6/devicon.min.css">
@@ -13,7 +13,21 @@
     <style>
         /* --- DYNAMIC CSS VARIABLES --- */
         :root {
-                  /* Custom Scrollbar Cyberpunk */
+            --hue: 270; /* Default: Purple Neon */
+            --sat: 80%;
+            --light: 50%;
+            
+            --bg-main: hsl(var(--hue), 25%, 6%);
+            --bg-secondary: hsl(var(--hue), 30%, 11%);
+            --bg-tertiary: hsl(var(--hue), 35%, 18%);
+            --text-primary: hsl(var(--hue), 20%, 96%);
+            --text-secondary: hsl(var(--hue), 15%, 70%);
+            --accent: hsl(var(--hue), var(--sat), var(--light));
+            --accent-glow: hsla(var(--hue), var(--sat), var(--light), 0.35);
+            --transition: 0.3s ease-in-out;
+        }
+
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -35,34 +49,18 @@
             color: var(--bg-main);
         }
 
-            --hue: 270; /* Default: Purple Neon */
-            --sat: 80%;
-            --light: 50%;
-            
-            --bg-main: hsl(var(--hue), 25%, 6%);
-            --bg-secondary: hsl(var(--hue), 30%, 11%);
-            --bg-tertiary: hsl(var(--hue), 35%, 18%);
-            --text-primary: hsl(var(--hue), 20%, 96%);
-            --text-secondary: hsl(var(--hue), 15%, 70%);
-            --accent: hsl(var(--hue), var(--sat), var(--light));
-            --accent-glow: hsla(var(--hue), var(--sat), var(--light), 0.35);
-            --transition: 0.3s ease-in-out;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Rajdhani', sans-serif; scroll-behavior: smooth; }
         body { 
-              /* Ganti URL di bawah ini sama link atau nama file foto lu */
-    background: linear-gradient(rgba(10, 5, 15, 0.85), rgba(10, 5, 15, 0.95)), 
-                url('background.jpg') no-repeat center center fixed;
-    background-size: cover; /* Biar foto menuhin layar */
-    color: var(--text-primary); 
-    line-height: 1.6; 
-    overflow-x: hidden; 
-    transition: color var(--transition); 
-        
+            background: linear-gradient(rgba(10, 5, 15, 0.85), rgba(10, 5, 15, 0.95)), 
+                        url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-primary); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+            transition: color var(--transition); 
         }
 
-              /* --- FONT HIAS UNTUK LOGO & JUDUL --- */
+        /* --- FONT HIAS UNTUK LOGO & JUDUL --- */
         .logo, 
         .section-title, 
         .profile-content h1, 
@@ -71,7 +69,6 @@
             font-family: 'Orbitron', sans-serif; 
         }
         
-        /* Tambahan agar logo terlihat lebih futuristik */
         .logo {
             letter-spacing: 3px;
         }
@@ -86,7 +83,7 @@
         .logo { font-size: 24px; font-weight: 700; letter-spacing: 2px; }
         .logo span { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
         .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a { font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-primary); text-decoration: none;}
         .nav-links a:hover { color: var(--accent); }
 
         /* --- CONTROLLER THEME DOCK --- */
@@ -124,7 +121,7 @@
         .section-title span { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
 
         /* --- HERO (PROFILE) SECTION --- */
-      #home { align-items: center; background: transparent; transition: var(--transition); }
+        #home { align-items: center; background: transparent; transition: var(--transition); }
         .profile-container { display: flex; align-items: center; justify-content: space-between; gap: 50px; width: 100%; max-width: 1000px; margin: 0 auto; }
         
         .profile-content { flex: 1; }
@@ -134,7 +131,7 @@
         .profile-content p { color: var(--text-secondary); margin-bottom: 30px; font-size: 16px; max-width: 500px; }
         
         .profile-buttons { display: flex; gap: 15px; }
-        .btn { display: inline-block; padding: 12px 30px; background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--accent); border-radius: 8px; font-weight: 600; transition: var(--transition); cursor: pointer; box-shadow: 0 0 10px var(--accent-glow); }
+        .btn { display: inline-block; padding: 12px 30px; background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--accent); border-radius: 8px; font-weight: 600; transition: var(--transition); cursor: pointer; box-shadow: 0 0 10px var(--accent-glow); text-decoration: none;}
         .btn:hover { background: var(--accent); color: var(--bg-main); box-shadow: 0 0 20px var(--accent); }
         .btn-outline { background: transparent; border: 1px solid var(--text-secondary); box-shadow: none; }
         .btn-outline:hover { border-color: var(--accent); background: transparent; color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
@@ -160,29 +157,29 @@
             width: 45px; height: 45px; background: var(--bg-main);
             border: 1px solid var(--accent); border-radius: 50%;
             font-size: 20px; color: var(--text-secondary);
-            transition: var(--transition); box-shadow: 0 0 10px var(--accent-glow);
+            transition: var(--transition); box-shadow: 0 0 10px var(--accent-glow); text-decoration: none;
         }
         .profile-socials a:hover {
             background: var(--accent); color: var(--bg-main);
             transform: translateY(-5px); border-color: var(--text-primary); box-shadow: 0 0 20px var(--accent);
         }
 
-/* --- ABOUT SECTION (FULL WIDTH) --- */
-#about { 
-    padding: 100px 0; /* Setel padding kiri-kanan jadi 0 khusus section about */
-    background: transparent; 
-    transition: var(--transition); 
-}
+        /* --- ABOUT SECTION --- */
+        #about { 
+            padding: 100px 0; 
+            background: transparent; 
+            transition: var(--transition); 
+        }
 
-/* Jaga agar Judul dan Deskripsi tetap rapi sejajar dengan section lain */
-#about .section-title,
-#about .about-desc,
-#about .click-hint {
-    padding-left: 10%;
-    padding-right: 10%;
-}
+        #about .section-title,
+        #about .about-desc,
+        #about .click-hint {
+            padding-left: 10%;
+            padding-right: 10%;
+            text-align: center;
+        }
 
-                /* --- ARENA GELEMBUNG 3D (FULL KIRI-KANAN) --- */
+        /* --- ARENA GELEMBUNG 3D --- */
         .bubble-arena {
             position: relative; 
             width: 100%; 
@@ -198,96 +195,66 @@
             transition: var(--transition);
         }
 
-        /* 2. TARUH CSS UNTUK GAMBAR SILUET DI SINI */
-        .center-figure {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            height: 75%;
-            object-fit: contain;
-            z-index: 180; /* Menempatkan siluet di tengah lintasan 3D */
-            pointer-events: none;
-            filter: drop-shadow(0 0 15px var(--accent-glow));
-            transition: var(--transition);
-        }
-
-        /* STYLE GELEMBUNG (TETAP DIPAKAI & DIBUAT TRANSPARAN) */
-                        .bubble {
+        .bubble {
             position: absolute; 
-            width: 35px; /* Diperkecil lagi dari 45px ke 35px */
+            width: 35px; 
             height: 35px; 
             background: rgba(0, 0, 0, 0.25); 
             border: 1px solid var(--accent); 
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
-            font-size: 15px; /* Ukuran ikon disesuaikan agar tetap presisi di tengah */
+            font-size: 15px; 
             color: var(--text-primary); cursor: pointer;
             box-shadow: 0 0 6px var(--accent-glow), inset 0 0 4px var(--accent-glow);
             will-change: transform;
         }
 
-
         /* --- PORTFOLIO & CONTACT --- */
-#portfolio { background: transparent; transition: var(--transition); }
+        #portfolio { background: transparent; transition: var(--transition); }
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        /* 1. Tambahkan position: relative di card utama */
-.portfolio-card { 
-    position: relative; /* Wajib ada biar sikunya nempel di kartu */
-    background: hsla(var(--hue), 25%, 10%, 0.6); 
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--bg-tertiary); 
-    border-radius: 12px; 
-    overflow: hidden; 
-    transition: var(--transition); 
-}
+        .portfolio-card { 
+            position: relative; 
+            background: hsla(var(--hue), 25%, 10%, 0.6); 
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--bg-tertiary); 
+            border-radius: 12px; 
+            padding: 25px;
+            overflow: hidden; 
+            transition: var(--transition); 
+        }
 
-.portfolio-card:hover { 
-    transform: translateY(-8px) scale(1.02); 
-    border-color: var(--accent); 
-    box-shadow: 0 10px 30px var(--accent-glow); 
-}
+        .portfolio-card:hover { 
+            transform: translateY(-8px) scale(1.02); 
+            border-color: var(--accent); 
+            box-shadow: 0 10px 30px var(--accent-glow); 
+        }
 
-/* 2. Elemen Siku HUD Futuristik */
-.portfolio-card::before, 
-.portfolio-card::after {
-    content: "";
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    border: 2px solid var(--accent);
-    transition: var(--transition);
-    pointer-events: none;
-    z-index: 2;
-}
+        .portfolio-card::before, 
+        .portfolio-card::after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--accent);
+            transition: var(--transition);
+            pointer-events: none;
+            z-index: 2;
+        }
 
-/* Siku Kiri Atas */
-.portfolio-card::before {
-    top: 0; 
-    left: 0;
-    border-right: none; 
-    border-bottom: none;
-}
+        .portfolio-card::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+        .portfolio-card::after { bottom: 0; right: 0; border-left: none; border-top: none; }
 
-/* Siku Kanan Bawah */
-.portfolio-card::after {
-    bottom: 0; 
-    right: 0;
-    border-left: none; 
-    border-top: none;
-}
+        .portfolio-card:hover::before, 
+        .portfolio-card:hover::after {
+            width: 25px;
+            height: 25px;
+            box-shadow: 0 0 12px var(--accent);
+        }
 
-/* Efek Melebar & Menyala Saat Menempel */
-.portfolio-card:hover::before, 
-.portfolio-card:hover::after {
-    width: 25px;
-    height: 25px;
-    box-shadow: 0 0 12px var(--accent);
-}
+        .portfolio-img { font-size: 40px; color: var(--accent); margin-bottom: 15px; }
+        .portfolio-link { display: inline-block; margin-top: 15px; color: var(--accent); text-decoration: none; font-weight: 600; }
 
-
-
-      #contact { background: transparent; text-align: center; transition: var(--transition); }
+        #contact { background: transparent; text-align: center; transition: var(--transition); }
         .contact-content { max-width: 600px; margin: 0 auto; }
         .contact-content p { color: var(--text-secondary); margin-bottom: 40px; }
         .contact-info { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; }
@@ -296,24 +263,7 @@
         
         footer { text-align: center; padding: 30px; background: var(--bg-main); border-top: 1px solid var(--bg-tertiary); color: var(--text-secondary); font-size: 14px; transition: var(--transition); }
 
-        /* --- RESPONSIVE DESIGN --- */
-        @media (max-width: 900px) {
-            .profile-container { flex-direction: column-reverse; text-align: center; gap: 40px; margin-top: 50px;}
-            .profile-buttons { justify-content: center; }
-            .profile-content h1 { font-size: 45px; }
-            .profile-content h1 span { font-size: 28px; }
-            .profile-image img { width: 250px; height: 250px; }
-        }
-        @media (max-width: 768px) { 
-            nav { padding: 12px 15px; } 
-            .nav-links a { display: none; }
-            .presets-wrapper { display: none; }
-        }
-      /* Class tambahan untuk mematikan animasi saat mode RGB aktif */
-.no-transition * {
-    transition: none !important;
-}
-              /* TOOLTIP NAMA TEKNOLOGI SAAT HOVER */
+        /* --- TOOLTIP NAMA TEKNOLOGI --- */
         .bubble::after {
             content: attr(data-tech);
             position: absolute;
@@ -334,14 +284,9 @@
             box-shadow: 0 0 8px var(--accent-glow);
         }
 
-        .bubble:hover::after {
-            opacity: 1;
-        }
+        .bubble:hover::after { opacity: 1; }
 
-        /* EFEK GLITCH PADA LOGO UTAMA */
-        .logo:hover {
-            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
-        }
+        .logo:hover { animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite; }
 
         @keyframes glitch {
             0% { transform: translate(0); }
@@ -351,43 +296,150 @@
             80% { transform: translate(2px, -2px); }
             100% { transform: translate(0); }
         }
-        /* --- DYNAMIC CSS VARIABLES --- */
-        :root {
-            --hue: 270; /* Default: Purple Neon */
-            --sat: 80%;
-            --light: 50%;
-            
-            --bg-main: hsl(var(--hue), 25%, 6%);
-            --bg-secondary: hsl(var(--hue), 30%, 11%);
-            --bg-tertiary: hsl(var(--hue), 35%, 18%);
-            --text-primary: hsl(var(--hue), 20%, 96%);
-            --text-secondary: hsl(var(--hue), 15%, 70%);
-            --accent: hsl(var(--hue), var(--sat), var(--light));
-            --accent-glow: hsla(var(--hue), var(--sat), var(--light), 0.35);
-            --transition: 0.3s ease-in-out;
+
+        .no-transition * { transition: none !important; }
+
+        /* ==========================================
+           EFEK ANIMASI SCROLL REVEAL (BARU)
+           ========================================== */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: opacity, transform;
         }
 
-        /* Custom Scrollbar Cyberpunk */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-main);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 4px;
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-primary);
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: opacity, transform;
         }
 
-        /* Warna Highlight Teks Saat Diblok */
-        ::selection {
-            background: var(--accent);
-            color: var(--bg-main);
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: opacity, transform;
         }
+
+        /* Trigger Aktif saat Elemen Muncul di Layar */
+        .reveal-up.active, 
+        .reveal-left.active, 
+        .reveal-right.active {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        /* Delay beruntun untuk elemen berdampingan */
+        .delay-1 { transition-delay: 0.15s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.45s; }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 900px) {
+            .profile-container { flex-direction: column-reverse; text-align: center; gap: 40px; margin-top: 50px;}
+            .profile-buttons { justify-content: center; }
+            .profile-content h1 { font-size: 45px; }
+            .profile-content h1 span { font-size: 28px; }
+            .profile-image img { width: 250px; height: 250px; }
+            .reveal-left, .reveal-right { transform: translateY(40px); } /* Ubah geser samping jadi geser atas di HP */
+        }
+        @media (max-width: 768px) { 
+            nav { padding: 12px 15px; } 
+            .nav-links a { display: none; }
+            .presets-wrapper { display: none; }
+        }
+      /* --- NEWS SECTION (PENGGANTI KONTAK) --- */
+#news { background: transparent; transition: var(--transition); }
+.news-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
+}
+
+.news-card {
+    background: hsla(var(--hue), 25%, 10%, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--bg-tertiary);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.news-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px var(--accent-glow);
+}
+
+.news-img {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+}
+
+.news-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.news-card:hover .news-img img {
+    transform: scale(1.1);
+}
+
+.news-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.news-date {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.news-content h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.news-content p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.news-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.news-link:hover {
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px var(--accent-glow);
+}
 
     </style>
 </head>
@@ -397,7 +449,7 @@
     <nav>
         <div class="logo">XAERI<span>SOFT.</span></div>
         <div class="nav-links">
-            <a href="#home">Beranda</a><a href="#about">Tentang</a><a href="#portfolio">Proyek</a><a href="#contact">Kontak</a>
+            <a href="#home">Beranda</a><a href="#about">Tentang</a><a href="#portfolio">Proyek</a><a href="#contact">Berita</a>
             
             <!-- CONTROLLER WARNA -->
             <div class="theme-controls">
@@ -406,9 +458,9 @@
                     <input type="color" id="theme-color-picker" value="#a855f7">
                 </div>
                 <button id="random-color-btn" class="theme-btn-icon" title="Acak Warna"><i class="fa-solid fa-shuffle"></i></button>
-                <button id="rainbow-btn" class="theme-btn-icon" title="Mode Disko Rainbow"><i class="fa-solid fa-rainbow"></i></button> <i class="fa-solid fa-volume-xmark" id="music-icon" style="cursor: pointer; font-size: 18px; margin: 0 5px; transition: var(--transition);" title="Putar Musik"></i>
+                <button id="rainbow-btn" class="theme-btn-icon" title="Mode Disko Rainbow"><i class="fa-solid fa-rainbow"></i></button> 
+                <i class="fa-solid fa-volume-xmark" id="music-icon" style="cursor: pointer; font-size: 18px; margin: 0 5px; transition: var(--transition);" title="Putar Musik"></i>
 
-              
                 <div class="presets-wrapper">
                     <div class="preset-dot" style="background: #00f0ff;" data-h="185" title="Cyberpunk Cyan"></div>
                     <div class="preset-dot" style="background: #10b981;" data-h="160" title="Matrix Emerald"></div>
@@ -422,19 +474,20 @@
     <!-- HERO SECTION -->
     <section id="home">
         <div class="profile-container">
-            <div class="profile-content">
+            <div class="profile-content reveal-left">
                 <h2>Halo, Selamat Datang!</h2>
                 <h1>Wil<br><span id="typing-text">Frontend Web Developer</span></h1>
                 <p>Saya seorang spesialis dalam membangun antarmuka web yang interaktif, futuristik, dan berfokus pada pengalaman pengguna yang luar biasa.</p>
                 <div class="profile-buttons">
-                    <a href="#portfolio" class="btn">Lihat Proyek</a>
-                    <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
-                </div>
+    <a href="#portfolio" class="btn">Lihat Proyek</a>
+    <a href="#news" class="btn btn-outline">Lihat Berita</a> <!-- Ini yang diubah -->
+</div>
+
             </div>
                             
-            <div class="profile-image-area">
+            <div class="profile-image-area reveal-right">
                 <div class="profile-image">
-                    <img src="pp.jpg">
+                    <img src="pp.jpg" alt="Profile">
                 </div>
                 <div class="profile-socials">
                     <a href="https://tiktok.com/@xaerisoft" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
@@ -446,16 +499,17 @@
         </div>
     </section>
 
+    
     <!-- ABOUT & 3D SKILL SPHERE SECTION -->
     <section id="about">
-        <h2 class="section-title">Tentang <span>Saya & Keahlian</span></h2>
+        <h2 class="section-title reveal-up">Tentang <span>Saya & Keahlian</span></h2>
         <div class="about-container">
-            <p class="about-desc">
+            <p class="about-desc reveal-up delay-1">
                 Berikut adalah teknologi dan perangkat yang biasa saya gunakan dalam menyusun ekosistem web modern:
             </p>
             <p class="click-hint"></p>
 
-                        <div class="bubble-arena" id="arena">
+            <div class="bubble-arena reveal-up delay-2" id="arena">
                 <div class="bubble" data-tech="Clean Code"><i class="fa-solid fa-code"></i></div>
                 <div class="bubble" data-tech="JavaScript"><i class="fa-brands fa-js" style="color: #f7df1e;"></i></div>
                 <div class="bubble" data-tech="HTML5"><i class="fa-brands fa-html5" style="color: #e34f26;"></i></div>
@@ -469,49 +523,73 @@
                 <div class="bubble" data-tech="Figma"><i class="fa-brands fa-figma" style="color: #f24e1e;"></i></div>
                 <div class="bubble" data-tech="Linux"><i class="fa-brands fa-linux" style="color: #fcc624;"></i></div>
             </div>
-
         </div>
     </section>
 
     <!-- PORTFOLIO SECTION -->
     <section id="portfolio">
-        <h2 class="section-title">Proyek <span>Terbaik</span></h2>
+        <h2 class="section-title reveal-up">Proyek <span>Terbaik</span></h2>
         <div class="portfolio-grid">
-            <div class="portfolio-card">
+            <div class="portfolio-card reveal-up delay-1">
                 <div class="portfolio-img"><i class="fa-solid fa-laptop-code"></i></div>
                 <div class="portfolio-info">
-                    <h3>SMM Panel Dashboard</h3><p>Antarmuka web interaktif dengan sistem navigasi hamburger menu dan simulasi login.</p><a href="#" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
+                    <h3>SMM Panel Dashboard</h3>
+                    <p>Antarmuka web interaktif dengan sistem navigasi hamburger menu dan simulasi login.</p>
+                    <a href="#" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="portfolio-card">
+            <div class="portfolio-card reveal-up delay-2">
                 <div class="portfolio-img"><i class="fa-solid fa-earth-americas"></i></div>
                 <div class="portfolio-info">
-                    <h3>Live Tracking Map</h3><p>Aplikasi pemetaan interaktif menggunakan Leaflet.js untuk melacak kapal dan penerbangan real-time.</p><a href="#" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
+                    <h3>Live Tracking Map</h3>
+                    <p>Aplikasi pemetaan interaktif menggunakan Leaflet.js untuk melacak kapal dan penerbangan real-time.</p>
+                    <a href="#" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
-    <section id="contact">
-        <h2 class="section-title">Hubungi <span>Saya</span></h2>
-        <div class="contact-content">
-            <p>Tertarik bekerja sama atau ingin berdiskusi? Jangan ragu untuk menyapa melalui kontak di bawah ini!</p>
-            <div class="contact-info">
-                <div class="contact-item"><i class="fa-regular fa-envelope"></i><span>emailkamu@domain.com</span></div>
-                <div class="contact-item"><i class="fa-solid fa-location-dot"></i><span>Indonesia</span></div>
-            </div>
-        </div>
-    </section>
+<!-- NEWS SECTION (AUTOMATIC REAL-TIME NEWS) -->
+<section id="news">
+    <h2 class="section-title reveal-up">Berita <span>Terkini Indonesia</span></h2>
+    
+    <!-- Wadah berita yang akan diisi otomatis oleh JavaScript -->
+    <div id="news-container" class="news-grid">
+        <!-- Indikator Loading -->
+        <p style="grid-column: 1/-1; text-align: center; color: var(--accent);">
+            <i class="fa-solid fa-spinner fa-spin"></i> Memuat berita terbaru dari media resmi...
+        </p>
+    </div>
+</section>
 
     <footer><p>&copy; 2026 Wilxd (XAERISOFT). Dibuat dengan cinta dan kode.</p></footer>
-<audio id="bg-music" src="music.mp3" loop></audio>
-                 
+    <audio id="bg-music" src="music.mp3" loop></audio>
 
-    <!-- SCRIPT LOGIKA WARNA & ROTASI 3D -->
+    <!-- SCRIPT UTAMA -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // --- WEB AUDIO API (SOUND EFFECT) ---
+
+            // ==========================================
+            // LOGIKA SCROLL REVEAL ANIMATION (BARU)
+            // ==========================================
+            const observerOptions = {
+                threshold: 0.12, // Elemen muncul saat 12% masuk layar
+                rootMargin: "0px 0px -40px 0px"
+            };
+
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, observerOptions);
+
+            // Ambil semua elemen dengan class animasi
+            const revealElements = document.querySelectorAll(".reveal-up, .reveal-left, .reveal-right");
+            revealElements.forEach((el) => scrollObserver.observe(el));
+
+            // --- WEB AUDIO API ---
             const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             function playCyberBeep(freq = 600, duration = 0.08) {
                 if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -527,7 +605,7 @@
                 osc.stop(audioCtx.currentTime + duration);
             }
 
-      // --- ADVANCED THEME SYSTEM ---
+            // --- ADVANCED THEME SYSTEM ---
             const colorPicker = document.getElementById("theme-color-picker");
             const randomBtn = document.getElementById("random-color-btn");
             const rainbowBtn = document.getElementById("rainbow-btn");
@@ -573,40 +651,39 @@
 
             colorPicker.addEventListener("input", (e) => setHue(hexToHue(e.target.value)));
             randomBtn.addEventListener("click", () => { playCyberBeep(800); setHue(Math.floor(Math.random() * 360)); });
-            rainbowBtn.addEventListener("click", () => {
-    playCyberBeep(1000);
-    if (rainbowInterval) {
-        clearInterval(rainbowInterval); 
-        rainbowInterval = null; 
-        rainbowBtn.classList.remove("active");
-        
-        // Nyalakan kembali efek transisi yang mulus saat RGB dimatikan
-        document.body.classList.remove("no-transition");
-    } else {
-        rainbowBtn.classList.add("active");
-        
-        // Matikan transisi CSS agar browser tidak lag saat warna berubah cepat
-        document.body.classList.add("no-transition"); 
-        
-        rainbowInterval = setInterval(() => { 
-            currentHue = (currentHue + 2) % 360; 
-            setHue(currentHue, false); 
-        }, 50); // Kamu juga bisa mengubah angka 50 ini ke 100 agar interval lebih santai
-    }
-});
-                         // ==========================================
-            // EFEK KETIK ANTI-ERROR
-            // ==========================================
-            const typingElement = document.getElementById("typing-text");
             
-            // Pengecekan: Hanya jalankan animasi kalau ID "typing-text" ditemukan
+            presetDots.forEach(dot => {
+                dot.addEventListener("click", () => {
+                    playCyberBeep(700);
+                    setHue(parseInt(dot.getAttribute("data-h")));
+                });
+            });
+
+            rainbowBtn.addEventListener("click", () => {
+                playCyberBeep(1000);
+                if (rainbowInterval) {
+                    clearInterval(rainbowInterval); 
+                    rainbowInterval = null; 
+                    rainbowBtn.classList.remove("active");
+                    document.body.classList.remove("no-transition");
+                } else {
+                    rainbowBtn.classList.add("active");
+                    document.body.classList.add("no-transition"); 
+                    rainbowInterval = setInterval(() => { 
+                        currentHue = (currentHue + 2) % 360; 
+                        setHue(currentHue, false); 
+                    }, 50);
+                }
+            });
+
+            // --- EFEK KETIK ANTI-ERROR ---
+            const typingElement = document.getElementById("typing-text");
             if (typingElement) { 
                 const roles = ["Frontend Web Developer", "Cyberpunk Enthusiast", "UI/UX Craftsman"];
                 let roleIndex = 0, charIndex = 0, isDeleting = false;
 
                 function typeEffect() {
                     const currentRole = roles[roleIndex];
-                    
                     if (isDeleting) {
                         typingElement.textContent = currentRole.substring(0, charIndex--);
                     } else {
@@ -627,13 +704,9 @@
                     setTimeout(typeEffect, speed);
                 }
                 typeEffect();
-            } else {
-                console.warn("Elemen typing-text tidak ditemukan di HTML!");
             }
-            // ==========================================
 
-
-            // --- LOGIKA 3D ORBIT SPHERE (DISEMPURNAKAN) ---
+            // --- LOGIKA 3D ORBIT SPHERE ---
             const arena = document.getElementById("arena");
             const bubbleEls = document.querySelectorAll(".bubble");
 
@@ -641,12 +714,11 @@
             let targetY = 0.015; 
             let rotationVelocityX = 0;
             let rotationVelocityY = 0;
-            let angleX = 0; // Sudut akumulasi X
-            let angleY = 0; // Sudut akumulasi Y
+            let angleX = 0; 
+            let angleY = 0; 
             const radius = 180; 
             let bubbles = [];
 
-            // Distribusi titik Fibonacci Sphere
             const phi = Math.PI * (3 - Math.sqrt(5)); 
             bubbleEls.forEach((el, i) => {
                 const y = 1 - (i / (bubbleEls.length - 1)) * 2; 
@@ -655,7 +727,6 @@
 
                 bubbles.push({
                     el: el,
-                    // Simpan koordinat awal secara permanen (Base Coordinates)
                     baseX: Math.cos(theta) * radiusAtY * radius,
                     baseY: y * radius,
                     baseZ: Math.sin(theta) * radiusAtY * radius
@@ -664,12 +735,11 @@
                 el.addEventListener("click", () => playCyberBeep(600 + (i * 20)));
             });
 
-            // Kontrol Mouse
             arena.addEventListener("mousemove", (e) => {
                 const rect = arena.getBoundingClientRect();
                 const x = e.clientX - rect.left - (rect.width / 2);
                 const y = e.clientY - rect.top - (rect.height / 2);
-                targetY = x * 0.00002; // Sedikit diturunkan agar lebih stabil
+                targetY = x * 0.00002; 
                 targetX = -y * 0.00002;
             });
             arena.addEventListener("mouseleave", () => { 
@@ -677,13 +747,10 @@
                 targetY = 0.0015; 
             });
 
-            // Engine Animasi
             function animate3D() {
-                // Easing (kehalusan pergerakan)
                 rotationVelocityX += (targetX - rotationVelocityX) * 0.05;
                 rotationVelocityY += (targetY - rotationVelocityY) * 0.05;
 
-                // Akumulasi sudut rotasi global
                 angleX += rotationVelocityX;
                 angleY += rotationVelocityY;
 
@@ -696,20 +763,15 @@
                     let x2 = b.baseX * cosY + z1 * sinY;
                     let z2 = -b.baseX * sinY + z1 * cosY;
 
-                    // --- KODE LOGIKA PENGHILANG MANUAL (UBAH DI SINI) ---
-                    
-                    // Skala membesar drastis di depan, mengecil di belakang
                     const scale = (z2 + 250) / 300; 
-                    
-                    // Logika menghilang saat ke belakang (z2 bernilai negatif)
                     let opacity = (z2 + 100) / 150; 
-                    if (opacity < 0) opacity = 0; // Benar-benar hilang saat di belakang
-                    if (opacity > 1) opacity = 1; // Jelas maksimal saat di depan
+                    if (opacity < 0) opacity = 0; 
+                    if (opacity > 1) opacity = 1; 
 
                     const isFront = z2 > 0;
 
                     b.el.style.transform = `translate3d(${x2}px, ${y1}px, ${z2}px) scale(${scale})`;
-                    b.el.style.opacity = opacity; // Memasukkan efek memudar
+                    b.el.style.opacity = opacity; 
                     b.el.style.zIndex = Math.round(z2 + radius);
                     
                     if (isFront) {
@@ -717,26 +779,94 @@
                     } else {
                         b.el.style.boxShadow = 'none';
                     }
-                    // ----------------------------------------------------
                 });
                 requestAnimationFrame(animate3D);
             }
             animate3D();
-
         });
-      const bgMusic = document.getElementById("bg-music");
-const musicIcon = document.getElementById("music-icon");
 
-musicIcon.addEventListener("click", () => {
-    if (bgMusic.paused) {
-        bgMusic.play();
-        musicIcon.className = "fa-solid fa-volume-high";
-        musicIcon.style.color = "var(--accent)";
-    } else {
-        bgMusic.pause();
-        musicIcon.className = "fa-solid fa-volume-xmark";
-        musicIcon.style.color = "";
+        // --- MUSIC PLAYER ---
+        const bgMusic = document.getElementById("bg-music");
+        const musicIcon = document.getElementById("music-icon");
+
+        musicIcon.addEventListener("click", () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                musicIcon.className = "fa-solid fa-volume-high";
+                musicIcon.style.color = "var(--accent)";
+            } else {
+                bgMusic.pause();
+                musicIcon.className = "fa-solid fa-volume-xmark";
+                musicIcon.style.color = "";
+            }
+        });
+      // --- FUNGSI AMBIL BERITA OTOMATIS (REAL-TIME RSS FETCH) ---
+async function fetchRealNews() {
+    const newsContainer = document.getElementById("news-container");
+    
+// Mengambil RSS Feed resmi khusus kategori POLITIK dari Antara News (Kantor Berita Resmi Negara)
+const rssApiUrl = "https://api.rss2json.com/v1/api.json?rss_url=https://www.antaranews.com/rss/politik.xml";
+
+    try {
+        const response = await fetch(rssApiUrl);
+        const data = await response.json();
+
+        if (data.status === "ok" && data.items.length > 0) {
+            newsContainer.innerHTML = ""; // Bersihkan teks loading
+
+            // Ambil 3 berita paling baru dari API
+            const articles = data.items.slice(0, 3);
+
+            articles.forEach((item, index) => {
+                // Ekstrak gambar dari thumbnail / enclosure / default
+                let imageUrl = item.thumbnail || (item.enclosure && item.enclosure.link);
+                
+                // Jika RSS tidak menyediakan gambar, gunakan gambar cadangan berita resmi
+                if (!imageUrl || imageUrl === "") {
+                    imageUrl = "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&h=400&q=80";
+                }
+
+                // Format Tanggal
+                const pubDate = new Date(item.pubDate).toLocaleDateString("id-ID", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                });
+
+                // Bersihkan deskripsi dari tag HTML liar
+                const cleanDescription = item.description.replace(/<[^>]*>?/gm, '').substring(0, 120) + "...";
+
+                // Buat Elemen Card
+                const cardHTML = `
+                    <div class="news-card reveal-up delay-${index + 1} active">
+                        <div class="news-img">
+                            <img src="${imageUrl}" alt="${item.title}" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&h=400&q=80'">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date"><i class="fa-regular fa-calendar"></i> ${pubDate}</span>
+                            <h3>${item.title}</h3>
+                            <p>${cleanDescription}</p>
+                            <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="news-link">
+                                Baca di Sumber Resmi <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                newsContainer.innerHTML += cardHTML;
+            });
+        } else {
+            newsContainer.innerHTML = "<p style='grid-column: 1/-1; text-align: center;'>Gagal memuat berita terkini.</p>";
+        }
+    } catch (error) {
+        console.error("Error fetching news:", error);
+        newsContainer.innerHTML = "<p style='grid-column: 1/-1; text-align: center;'>Gagal terhubung ke server berita.</p>";
     }
+}
+
+// Jalankan pengambilan berita saat halaman dimuat
+document.addEventListener("DOMContentLoaded", () => {
+    fetchRealNews();
 });
 
     </script>
