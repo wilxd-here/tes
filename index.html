@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Profesional - Wilxd</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome & DevIcons untuk Ikon Teknologi -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.6/devicon.min.css">
+    
+    <style>
+        /* --- DYNAMIC CSS VARIABLES --- */
+        :root {
+            --hue: 270; /* Default: Purple Neon */
+            --sat: 80%;
+            --light: 50%;
+            
+            --bg-main: hsl(var(--hue), 25%, 6%);
+            --bg-secondary: hsl(var(--hue), 30%, 11%);
+            --bg-tertiary: hsl(var(--hue), 35%, 18%);
+            --text-primary: hsl(var(--hue), 20%, 96%);
+            --text-secondary: hsl(var(--hue), 15%, 70%);
+            --accent: hsl(var(--hue), var(--sat), var(--light));
+            --accent-glow: hsla(var(--hue), var(--sat), var(--light), 0.35);
+            --transition: 0.3s ease-in-out;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        body { 
+              /* Ganti URL di bawah ini sama link atau nama file foto lu */
+    background: linear-gradient(rgba(10, 5, 15, 0.85), rgba(10, 5, 15, 0.95)), 
+                url('background.jpg') no-repeat center center fixed;
+    background-size: cover; /* Biar foto menuhin layar */
+    color: var(--text-primary); 
+    line-height: 1.6; 
+    overflow-x: hidden; 
+    transition: color var(--transition); 
+        }
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 15px 50px; display: flex; justify-content: space-between;
+            align-items: center; background: hsla(var(--hue), 25%, 6%, 0.85); backdrop-filter: blur(12px); z-index: 1000;
+            border-bottom: 1px solid var(--bg-tertiary);
+            transition: var(--transition);
+        }
+        .logo { font-size: 24px; font-weight: 700; letter-spacing: 2px; }
+        .logo span { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* --- CONTROLLER THEME DOCK --- */
+        .theme-controls {
+            display: flex; align-items: center; gap: 10px;
+            background: var(--bg-tertiary); padding: 6px 14px;
+            border-radius: 30px; border: 1px solid var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow); transition: var(--transition);
+        }
+
+        .color-picker-wrapper { position: relative; display: flex; align-items: center; cursor: pointer; }
+        .color-picker-wrapper i { font-size: 16px; color: var(--accent); transition: var(--transition); }
+        .color-picker-wrapper input[type="color"] { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+
+        .theme-btn-icon {
+            background: transparent; border: none; color: var(--text-primary);
+            font-size: 15px; cursor: pointer; transition: var(--transition);
+            display: flex; align-items: center; justify-content: center;
+            width: 28px; height: 28px; border-radius: 50%;
+        }
+        .theme-btn-icon:hover { color: var(--accent); background: rgba(255, 255, 255, 0.1); transform: scale(1.15); }
+        .theme-btn-icon.active { color: #000; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+
+        /* Preset Badges */
+        .presets-wrapper { display: flex; gap: 6px; border-left: 1px solid var(--accent); padding-left: 10px; }
+        .preset-dot {
+            width: 14px; height: 14px; border-radius: 50%; cursor: pointer;
+            transition: transform 0.2s; border: 1px solid rgba(255,255,255,0.3);
+        }
+        .preset-dot:hover { transform: scale(1.3); }
+
+        /* --- GLOBAL SECTION --- */
+        section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        .section-title { font-size: 36px; font-weight: 700; margin-bottom: 30px; text-align: center; text-transform: uppercase; letter-spacing: 3px; }
+        .section-title span { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
+
+        /* --- HERO (PROFILE) SECTION --- */
+        #home { align-items: center; background: radial-gradient(circle at top right, var(--bg-tertiary) 0%, var(--bg-main) 60%); transition: var(--transition); }
+        .profile-container { display: flex; align-items: center; justify-content: space-between; gap: 50px; width: 100%; max-width: 1000px; margin: 0 auto; }
+        
+        .profile-content { flex: 1; }
+        .profile-content h2 { font-size: 24px; font-weight: 300; color: var(--text-secondary); margin-bottom: 5px; }
+        .profile-content h1 { font-size: 55px; font-weight: 700; line-height: 1.1; margin-bottom: 15px; }
+        .profile-content h1 span { color: var(--accent); font-size: 35px; display: block; margin-top: 10px; font-weight: 600; text-shadow: 0 0 15px var(--accent-glow); }
+        .profile-content p { color: var(--text-secondary); margin-bottom: 30px; font-size: 16px; max-width: 500px; }
+        
+        .profile-buttons { display: flex; gap: 15px; }
+        .btn { display: inline-block; padding: 12px 30px; background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--accent); border-radius: 8px; font-weight: 600; transition: var(--transition); cursor: pointer; box-shadow: 0 0 10px var(--accent-glow); }
+        .btn:hover { background: var(--accent); color: var(--bg-main); box-shadow: 0 0 20px var(--accent); }
+        .btn-outline { background: transparent; border: 1px solid var(--text-secondary); box-shadow: none; }
+        .btn-outline:hover { border-color: var(--accent); background: transparent; color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
+
+        .profile-image-area { flex: 0 0 350px; display: flex; flex-direction: column; align-items: center; gap: 25px; }
+        .profile-image img {
+            width: 320px; height: 320px; object-fit: cover;
+            border: 4px solid var(--accent); box-shadow: 0 0 25px var(--accent-glow);
+            animation: morph 8s ease-in-out infinite, float 6s ease-in-out infinite; transition: var(--transition);
+        }
+        .profile-image img:hover { border-color: var(--text-primary); box-shadow: 0 0 40px var(--accent); }
+
+        @keyframes morph {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+
+        .profile-socials { display: flex; gap: 15px; }
+        .profile-socials a {
+            display: flex; justify-content: center; align-items: center;
+            width: 45px; height: 45px; background: var(--bg-main);
+            border: 1px solid var(--accent); border-radius: 50%;
+            font-size: 20px; color: var(--text-secondary);
+            transition: var(--transition); box-shadow: 0 0 10px var(--accent-glow);
+        }
+        .profile-socials a:hover {
+            background: var(--accent); color: var(--bg-main);
+            transform: translateY(-5px); border-color: var(--text-primary); box-shadow: 0 0 20px var(--accent);
+        }
+
+        /* --- ABOUT & BUBBLES ARENA SECTION --- */
+        #about { background: transparent; transition: var(--transition); }
+        .about-container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .about-desc { max-width: 700px; text-align: center; color: var(--text-secondary); font-size: 16px; }
+        .click-hint { font-size: 14px; color: var(--accent); font-style: italic; animation: pulse 2s infinite; text-shadow: 0 0 8px var(--accent-glow); }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        /* --- ARENA GELEMBUNG 3D --- */
+        .bubble-arena {
+            position: relative; 
+            width: 100%; max-width: 800px; height: 500px; 
+            margin: 20px auto;
+            border: 1px solid var(--bg-tertiary); 
+            border-radius: 20px; 
+            background: radial-gradient(circle, var(--bg-tertiary) 0%, var(--bg-main) 100%);
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+            perspective: 1200px; /* Kunci efek 3D */
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden; transition: var(--transition);
+        }
+
+        .bubble {
+            position: absolute; width: 70px; height: 70px; 
+            background: rgba(20, 20, 25, 0.7);
+            backdrop-filter: blur(5px); /* Efek glassmorphism */
+            border: 1px solid var(--accent); border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 30px; color: var(--text-primary); cursor: pointer;
+            box-shadow: 0 0 15px var(--accent-glow);
+            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        .bubble:hover { background: var(--accent); color: #000; box-shadow: 0 0 30px var(--accent); }
+
+        /* --- PORTFOLIO & CONTACT --- */
+#portfolio { background: transparent; transition: var(--transition); }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .portfolio-card { background: var(--bg-secondary); border: 1px solid var(--bg-tertiary); border-radius: 8px; overflow: hidden; transition: var(--transition); }
+        .portfolio-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 10px 25px var(--accent-glow); }
+        .portfolio-img { width: 100%; height: 200px; background: var(--bg-tertiary); display: flex; justify-content: center; align-items: center; color: var(--text-secondary); font-size: 40px; }
+        .portfolio-info { padding: 25px; }
+        .portfolio-info h3 { font-size: 20px; margin-bottom: 10px; }
+        .portfolio-info p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
+        .portfolio-link { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 5px; color: var(--accent); }
+
+        #contact { background-color: var(--bg-secondary); text-align: center; transition: var(--transition); }
+        .contact-content { max-width: 600px; margin: 0 auto; }
+        .contact-content p { color: var(--text-secondary); margin-bottom: 40px; }
+        .contact-info { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; }
+        .contact-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .contact-item i { font-size: 30px; color: var(--accent); filter: drop-shadow(0 0 8px var(--accent-glow)); }
+        
+        footer { text-align: center; padding: 30px; background: var(--bg-main); border-top: 1px solid var(--bg-tertiary); color: var(--text-secondary); font-size: 14px; transition: var(--transition); }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 900px) {
+            .profile-container { flex-direction: column-reverse; text-align: center; gap: 40px; margin-top: 50px;}
+            .profile-buttons { justify-content: center; }
+            .profile-content h1 { font-size: 45px; }
+            .profile-content h1 span { font-size: 28px; }
+            .profile-image img { width: 250px; height: 250px; }
+        }
+        @media (max-width: 768px) { 
+            nav { padding: 12px 15px; } 
+            .nav-links a { display: none; }
+            .presets-wrapper { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">XAERI<span>SOFT.</span></div>
+        <div class="nav-links">
+            <a href="#home">Beranda</a><a href="#about">Tentang</a><a href="#portfolio">Proyek</a><a href="#contact">Kontak</a>
+            
+            <!-- CONTROLLER WARNA -->
+            <div class="theme-controls">
+                <div class="color-picker-wrapper" title="Pilih Warna Kustom">
+                    <i class="fa-solid fa-palette"></i>
+                    <input type="color" id="theme-color-picker" value="#a855f7">
+                </div>
+                <button id="random-color-btn" class="theme-btn-icon" title="Acak Warna"><i class="fa-solid fa-shuffle"></i></button>
+                <button id="rainbow-btn" class="theme-btn-icon" title="Mode Disko Rainbow"><i class="fa-solid fa-rainbow"></i></button>
+                <div class="presets-wrapper">
+                    <div class="preset-dot" style="background: #00f0ff;" data-h="185" title="Cyberpunk Cyan"></div>
+                    <div class="preset-dot" style="background: #10b981;" data-h="160" title="Matrix Emerald"></div>
+                    <div class="preset-dot" style="background: #a855f7;" data-h="270" title="Dracula Violet"></div>
+                    <div class="preset-dot" style="background: #f59e0b;" data-h="38" title="Sunset Gold"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home">
+        <div class="profile-container">
+            <div class="profile-content">
+                <h2>Halo, Selamat Datang!</h2>
+                <h1>Wil<br><span>Frontend Web Developer</span></h1>
+                <p>Saya seorang spesialis dalam membangun antarmuka web yang interaktif, futuristik, dan berfokus pada pengalaman pengguna yang luar biasa.</p>
+                <div class="profile-buttons">
+                    <a href="#portfolio" class="btn">Lihat Proyek</a>
+                    <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
+                </div>
+            </div>
+            
+            <div class="profile-image-area">
+                <div class="profile-image">
+                    <img src="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?q=80&w=400&auto=format&fit=crop" alt="Foto Profil Saya">
+                </div>
+                <div class="profile-socials">
+                    <a href="https://tiktok.com/@xaerisoft" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/bknwil?stkn=aXhyZW0ybjc5NWU3" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://whatsapp.com/channel/0029VbC7s6w7T8bebeuFFM1O" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://t.me/wilajaa" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT & 3D SKILL SPHERE SECTION -->
+    <section id="about">
+        <h2 class="section-title">Tentang <span>Saya & Keahlian</span></h2>
+        <div class="about-container">
+            <p class="about-desc">
+                Berikut adalah teknologi dan perangkat yang biasa saya gunakan dalam menyusun ekosistem web modern:
+            </p>
+            <p class="click-hint">*Coba gerakkan mouse di atas area ini dan klik gelembungnya!</p>
+
+            <div class="bubble-arena" id="arena">
+                <div class="bubble"><i class="fa-solid fa-code"></i></div>
+                <div class="bubble"><i class="fa-brands fa-js" style="color: #f7df1e;"></i></div>
+                <div class="bubble"><i class="fa-brands fa-html5" style="color: #e34f26;"></i></div>
+                <div class="bubble"><i class="fa-brands fa-css3-alt" style="color: #1572b6;"></i></div>
+                <div class="bubble"><i class="fa-brands fa-react" style="color: #61dafb;"></i></div>
+                <div class="bubble"><i class="fa-brands fa-node-js" style="color: #339933;"></i></div>
+                <div class="bubble"><i class="fa-brands fa-git-alt" style="color: #f05032;"></i></div>
+                <div class="bubble"><i class="fa-brands fa-python" style="color: #3776ab;"></i></div>
+                <div class="bubble"><i class="fa-brands fa-php" style="color: #777bb4;"></i></div>
+                <div class="bubble"><i class="fa-solid fa-database" style="color: #4479a1;"></i></div>
+                <div class="bubble"><i class="fa-brands fa-figma" style="color: #f24e1e;"></i></div>
+                <div class="bubble"><i class="fa-brands fa-linux" style="color: #fcc624;"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio">
+        <h2 class="section-title">Proyek <span>Terbaik</span></h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="portfolio-img"><i class="fa-solid fa-laptop-code"></i></div>
+                <div class="portfolio-info">
+                    <h3>SMM Panel Dashboard</h3><p>Antarmuka web interaktif dengan sistem navigasi hamburger menu dan simulasi login.</p><a href="#" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-img"><i class="fa-solid fa-earth-americas"></i></div>
+                <div class="portfolio-info">
+                    <h3>Live Tracking Map</h3><p>Aplikasi pemetaan interaktif menggunakan Leaflet.js untuk melacak kapal dan penerbangan real-time.</p><a href="#" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <h2 class="section-title">Hubungi <span>Saya</span></h2>
+        <div class="contact-content">
+            <p>Tertarik bekerja sama atau ingin berdiskusi? Jangan ragu untuk menyapa melalui kontak di bawah ini!</p>
+            <div class="contact-info">
+                <div class="contact-item"><i class="fa-regular fa-envelope"></i><span>emailkamu@domain.com</span></div>
+                <div class="contact-item"><i class="fa-solid fa-location-dot"></i><span>Indonesia</span></div>
+            </div>
+        </div>
+    </section>
+
+    <footer><p>&copy; 2026 Wilxd (XAERISOFT). Dibuat dengan cinta dan kode.</p></footer>
+
+    <!-- SCRIPT LOGIKA WARNA & ROTASI 3D -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // --- WEB AUDIO API (SOUND EFFECT) ---
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            function playCyberBeep(freq = 600, duration = 0.08) {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            }
+
+      // --- ADVANCED THEME SYSTEM ---
+            const colorPicker = document.getElementById("theme-color-picker");
+            const randomBtn = document.getElementById("random-color-btn");
+            const rainbowBtn = document.getElementById("rainbow-btn");
+            const presetDots = document.querySelectorAll(".preset-dot");
+            const root = document.documentElement;
+
+            let rainbowInterval = null;
+            let currentHue = 270;
+
+            function setHue(h, stopRainbow = true) {
+                if (stopRainbow && rainbowInterval) {
+                    clearInterval(rainbowInterval);
+                    rainbowInterval = null;
+                    rainbowBtn.classList.remove("active");
+                }
+                currentHue = h;
+                root.style.setProperty('--hue', h);
+                colorPicker.value = hslToHex(h, 80, 50);
+                localStorage.setItem("themeHue", h);
+            }
+
+            function hexToHue(hex) {
+                let r = parseInt(hex.substr(1, 2), 16) / 255, g = parseInt(hex.substr(3, 2), 16) / 255, b = parseInt(hex.substr(5, 2), 16) / 255;
+                let max = Math.max(r, g, b), min = Math.min(r, g, b), h = 0;
+                if (max !== min) {
+                    let d = max - min;
+                    switch (max) { case r: h = (g - b) / d + (g < b ? 6 : 0); break; case g: h = (b - r) / d + 2; break; case b: h = (r - g) / d + 4; break; }
+                    h /= 6;
+                }
+                return Math.round(h * 360);
+            }
+
+            function hslToHex(h, s, l) {
+                l /= 100;
+                const a = s * Math.min(l, 1 - l) / 100;
+                const f = n => {
+                    const k = (n + h / 30) % 12;
+                    const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                    return Math.round(255 * color).toString(16).padStart(2, '0');
+                };
+                return `#${f(0)}${f(8)}${f(4)}`;
+            }
+
+            colorPicker.addEventListener("input", (e) => setHue(hexToHue(e.target.value)));
+            randomBtn.addEventListener("click", () => { playCyberBeep(800); setHue(Math.floor(Math.random() * 360)); });
+            rainbowBtn.addEventListener("click", () => {
+                playCyberBeep(1000);
+                if (rainbowInterval) {
+                    clearInterval(rainbowInterval); rainbowInterval = null; rainbowBtn.classList.remove("active");
+                } else {
+                    rainbowBtn.classList.add("active");
+                    rainbowInterval = setInterval(() => { currentHue = (currentHue + 2) % 360; setHue(currentHue, false); }, 50);
+                }
+            });
+            presetDots.forEach(dot => dot.addEventListener("click", () => { playCyberBeep(700); setHue(parseInt(dot.getAttribute("data-h"))); }));
+
+            const savedHue = localStorage.getItem("themeHue");
+            if (savedHue !== null) setHue(parseInt(savedHue));
+
+
+            // --- LOGIKA 3D ORBIT SPHERE ---
+            const arena = document.getElementById("arena");
+            const bubbleEls = document.querySelectorAll(".bubble");
+
+            let targetX = 0.005; // Auto-rotate speed X
+            let targetY = 0.005; // Auto-rotate speed Y
+            let rotationX = 0;
+            let rotationY = 0;
+            const radius = 180; 
+            let bubbles = [];
+
+            // Distribusi titik Fibonacci Sphere
+            const phi = Math.PI * (3 - Math.sqrt(5)); 
+            bubbleEls.forEach((el, i) => {
+                const y = 1 - (i / (bubbleEls.length - 1)) * 2; 
+                const radiusAtY = Math.sqrt(1 - y * y);
+                const theta = phi * i;
+
+                bubbles.push({
+                    el: el,
+                    x: Math.cos(theta) * radiusAtY * radius,
+                    y: y * radius,
+                    z: Math.sin(theta) * radiusAtY * radius
+                });
+                
+                el.addEventListener("click", () => playCyberBeep(600 + (i * 20)));
+            });
+
+            // Kontrol Mouse
+            arena.addEventListener("mousemove", (e) => {
+                const rect = arena.getBoundingClientRect();
+                const x = e.clientX - rect.left - (rect.width / 2);
+                const y = e.clientY - rect.top - (rect.height / 2);
+                targetY = x * 0.0001; 
+                targetX = -y * 0.0001;
+            });
+            arena.addEventListener("mouseleave", () => { targetX = 0.002; targetY = 0.005; });
+
+            // Engine Animasi
+            function animate3D() {
+                rotationX += (targetX - rotationX) * 0.1;
+                rotationY += (targetY - rotationY) * 0.1;
+
+                let cosX = Math.cos(rotationX), sinX = Math.sin(rotationX);
+                let cosY = Math.cos(rotationY), sinY = Math.sin(rotationY);
+
+                bubbles.forEach(b => {
+                    let y1 = b.y * cosX - b.z * sinX;
+                    let z1 = b.y * sinX + b.z * cosX;
+                    let x2 = b.x * cosY + z1 * sinY;
+                    let z2 = -b.x * sinY + z1 * cosY;
+
+                    b.x = x2; b.y = y1; b.z = z2;
+
+                    const scale = (z2 + 300) / 300; 
+                    const opacity = (z2 + radius) / (radius * 2);
+
+                    b.el.style.transform = `translate3d(${b.x}px, ${b.y}px, ${b.z}px) scale(${scale})`;
+                    b.el.style.opacity = Math.max(0.2, opacity);
+                    b.el.style.zIndex = Math.round(z2 + radius);
+                });
+                requestAnimationFrame(animate3D);
+            }
+            animate3D();
+        });
+    </script>
+</body>
+</html>
