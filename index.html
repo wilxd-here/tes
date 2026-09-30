@@ -231,19 +231,61 @@
         /* --- PORTFOLIO & CONTACT --- */
 #portfolio { background: transparent; transition: var(--transition); }
         .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        /* 1. Tambahkan position: relative di card utama */
 .portfolio-card { 
+    position: relative; /* Wajib ada biar sikunya nempel di kartu */
     background: hsla(var(--hue), 25%, 10%, 0.6); 
-    backdrop-filter: blur(10px); /* Efek buram kaca transparan */
+    backdrop-filter: blur(10px);
     border: 1px solid var(--bg-tertiary); 
     border-radius: 12px; 
     overflow: hidden; 
     transition: var(--transition); 
 }
+
 .portfolio-card:hover { 
-    transform: translateY(-8px) scale(1.02); /* Sedikit membesar saat di-hover */
+    transform: translateY(-8px) scale(1.02); 
     border-color: var(--accent); 
     box-shadow: 0 10px 30px var(--accent-glow); 
 }
+
+/* 2. Elemen Siku HUD Futuristik */
+.portfolio-card::before, 
+.portfolio-card::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--accent);
+    transition: var(--transition);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Siku Kiri Atas */
+.portfolio-card::before {
+    top: 0; 
+    left: 0;
+    border-right: none; 
+    border-bottom: none;
+}
+
+/* Siku Kanan Bawah */
+.portfolio-card::after {
+    bottom: 0; 
+    right: 0;
+    border-left: none; 
+    border-top: none;
+}
+
+/* Efek Melebar & Menyala Saat Menempel */
+.portfolio-card:hover::before, 
+.portfolio-card:hover::after {
+    width: 25px;
+    height: 25px;
+    box-shadow: 0 0 12px var(--accent);
+}
+
+
 
       #contact { background: transparent; text-align: center; transition: var(--transition); }
         .contact-content { max-width: 600px; margin: 0 auto; }
@@ -389,7 +431,7 @@
                     <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
                 </div>
             </div>
-            
+                            
             <div class="profile-image-area">
                 <div class="profile-image">
                     <img src="pp.jpg">
@@ -464,6 +506,7 @@
 
     <footer><p>&copy; 2026 Wilxd (XAERISOFT). Dibuat dengan cinta dan kode.</p></footer>
 <audio id="bg-music" src="music.mp3" loop></audio>
+                 
 
     <!-- SCRIPT LOGIKA WARNA & ROTASI 3D -->
     <script>
