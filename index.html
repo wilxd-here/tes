@@ -308,11 +308,9 @@
             <p class="about-desc">
                 Berikut adalah teknologi dan perangkat yang biasa saya gunakan dalam menyusun ekosistem web modern:
             </p>
-            <p class="click-hint">*Coba gerakkan mouse di atas area ini dan klik gelembungnya!</p>
+            <p class="click-hint"></p>
 
             <div class="bubble-arena" id="arena">
-               <!-- Tambahkan sosok siluet di tengah arena -->
-                <img src="siluet.png" alt="Avatar" class="center-figure">
                 <div class="bubble"><i class="fa-solid fa-code"></i></div>
                 <div class="bubble"><i class="fa-brands fa-js" style="color: #f7df1e;"></i></div>
                 <div class="bubble"><i class="fa-brands fa-html5" style="color: #e34f26;"></i></div>
@@ -454,8 +452,8 @@
             const arena = document.getElementById("arena");
             const bubbleEls = document.querySelectorAll(".bubble");
 
-            let targetX = 0.005; 
-            let targetY = 0.005; 
+            let targetX = 0.012; 
+            let targetY = 0.015; 
             let rotationVelocityX = 0;
             let rotationVelocityY = 0;
             let angleX = 0; // Sudut akumulasi X
@@ -486,12 +484,12 @@
                 const rect = arena.getBoundingClientRect();
                 const x = e.clientX - rect.left - (rect.width / 2);
                 const y = e.clientY - rect.top - (rect.height / 2);
-                targetY = x * 0.00008; // Sedikit diturunkan agar lebih stabil
-                targetX = -y * 0.00008;
+                targetY = x * 0.00002; // Sedikit diturunkan agar lebih stabil
+                targetX = -y * 0.00002;
             });
             arena.addEventListener("mouseleave", () => { 
-                targetX = 0.002; 
-                targetY = 0.004; 
+                targetX = 0.0012; 
+                targetY = 0.0015; 
             });
 
             // Engine Animasi
@@ -508,28 +506,33 @@
                 let cosY = Math.cos(angleY), sinY = Math.sin(angleY);
 
                 bubbles.forEach(b => {
-                    // Rotasi dihitung berdasarkan baseX, baseY, baseZ (bukan menimpa nilai yang sama terus)
                     let y1 = b.baseY * cosX - b.baseZ * sinX;
                     let z1 = b.baseY * sinX + b.baseZ * cosX;
                     let x2 = b.baseX * cosY + z1 * sinY;
                     let z2 = -b.baseX * sinY + z1 * cosY;
 
-                    const scale = (z2 + 300) / 300; 
-                    const opacity = (z2 + radius) / (radius * 2);
-                    const isFront = z2 > 0; // Deteksi jika gelembung ada di depan
+                    // --- KODE LOGIKA PENGHILANG MANUAL (UBAH DI SINI) ---
+                    
+                    // Skala membesar drastis di depan, mengecil di belakang
+                    const scale = (z2 + 250) / 300; 
+                    
+                    // Logika menghilang saat ke belakang (z2 bernilai negatif)
+                    let opacity = (z2 + 100) / 150; 
+                    if (opacity < 0) opacity = 0; // Benar-benar hilang saat di belakang
+                    if (opacity > 1) opacity = 1; // Jelas maksimal saat di depan
+
+                    const isFront = z2 > 0;
 
                     b.el.style.transform = `translate3d(${x2}px, ${y1}px, ${z2}px) scale(${scale})`;
-                    b.el.style.opacity = Math.max(0.15, opacity);
+                    b.el.style.opacity = opacity; // Memasukkan efek memudar
                     b.el.style.zIndex = Math.round(z2 + radius);
                     
-                    // Efek neon dinamis: menyala lebih terang saat berada di depan
                     if (isFront) {
                         b.el.style.boxShadow = `0 0 ${15 * scale}px var(--accent-glow)`;
-                        b.el.style.backdropFilter = `blur(${5 * scale}px)`;
                     } else {
                         b.el.style.boxShadow = 'none';
-                        b.el.style.backdropFilter = 'blur(2px)';
                     }
+                    // ----------------------------------------------------
                 });
                 requestAnimationFrame(animate3D);
             }
