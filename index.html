@@ -160,18 +160,15 @@
     padding-right: 10%;
 }
 
-        /* --- ARENA GELEMBUNG 3D (FULL KIRI-KANAN) --- */
+                /* --- ARENA GELEMBUNG 3D (FULL KIRI-KANAN) --- */
         .bubble-arena {
             position: relative; 
             width: 100%; 
-            height: 600px; /* Ditinggikan agar lebih luas seperti di video */
+            height: 550px; 
             margin: 40px 0;
             border: none;
-            
-            /* Gunakan background luar angkasanya saja tanpa linear-gradient agar cerah */
             background: url('background2.jpg') no-repeat center center;
             background-size: cover;
-            
             box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
             perspective: 1200px; 
             display: flex; justify-content: center; align-items: center;
@@ -179,23 +176,33 @@
             transition: var(--transition);
         }
 
-        /* --- SOSOK DI TENGAH (KUNCI EFEK 3D) --- */
+        /* 2. TARUH CSS UNTUK GAMBAR SILUET DI SINI */
         .center-figure {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            height: 75%; /* Sesuaikan besar siluetnya */
+            height: 75%;
             object-fit: contain;
-            
-            /* KUNCI 3D: Karena radius putaran di JS adalah 180, nilai tengahnya adalah 180. 
-               Dengan mensetting z-index siluet ke 180, gelembung yang ada di depan (>180) akan menutupi siluet, 
-               sedangkan gelembung yang di belakang (<180) akan tertutup oleh siluet! */
-            z-index: 180; 
-            
-            pointer-events: none; /* Agar siluet tidak menghalangi mouse saat mau klik ikon */
-            filter: drop-shadow(0 0 15px var(--accent-glow)); /* Efek neon glow menyesuaikan tema RGB */
+            z-index: 180; /* Menempatkan siluet di tengah lintasan 3D */
+            pointer-events: none;
+            filter: drop-shadow(0 0 15px var(--accent-glow));
             transition: var(--transition);
+        }
+
+        /* STYLE GELEMBUNG (TETAP DIPAKAI & DIBUAT TRANSPARAN) */
+                        .bubble {
+            position: absolute; 
+            width: 35px; /* Diperkecil lagi dari 45px ke 35px */
+            height: 35px; 
+            background: rgba(0, 0, 0, 0.25); 
+            border: 1px solid var(--accent); 
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 15px; /* Ukuran ikon disesuaikan agar tetap presisi di tengah */
+            color: var(--text-primary); cursor: pointer;
+            box-shadow: 0 0 6px var(--accent-glow), inset 0 0 4px var(--accent-glow);
+            will-change: transform;
         }
 
 
