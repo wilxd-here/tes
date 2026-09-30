@@ -160,54 +160,42 @@
     padding-right: 10%;
 }
 
-/* --- ARENA GELEMBUNG 3D (FULL KIRI-KANAN) --- */
-.bubble-arena {
-    position: relative; 
-    width: 100%; 
-    height: 500px; 
-    margin: 40px 0;
-    
-    /* GANTI BAGIAN INI: Hilangkan border dan kurangi efek shadow agar tidak berat */
-    border: none;
-    border-radius: 0; 
-    
-    background: linear-gradient(rgba(10, 5, 15, 0.75), rgba(10, 5, 15, 0.85)), 
-                url('background2.jpg') no-repeat center center;
-    background-size: cover;
-    
-    /* Box shadow bisa dibiarkan atau dihapus (hapus untuk performa maksimal) */
-    box-shadow: inset 0 0 30px rgba(0,0,0,0.6);
-    perspective: 1200px; 
-    display: flex; justify-content: center; align-items: center;
-    overflow: hidden; 
-    transition: var(--transition);
-}
-
-
-                /* --- KEMBALIKAN BENTUK KACA GELEMBUNG --- */
-        .bubble {
-            position: absolute; 
-            width: 70px; 
-            height: 70px; 
-            /* UBAH: Gunakan warna solid semi-transparan alih-alih backdrop-filter */
-            background: rgba(20, 20, 25, 0.85); 
+        /* --- ARENA GELEMBUNG 3D (FULL KIRI-KANAN) --- */
+        .bubble-arena {
+            position: relative; 
+            width: 100%; 
+            height: 600px; /* Ditinggikan agar lebih luas seperti di video */
+            margin: 40px 0;
+            border: none;
             
-            /* UBAH: MATIKAN BACKDROP-FILTER karena ini penyebab utama lag di mobile */
-            /* backdrop-filter: blur(5px); */ 
+            /* Gunakan background luar angkasanya saja tanpa linear-gradient agar cerah */
+            background: url('background2.jpg') no-repeat center center;
+            background-size: cover;
             
-            border: 1px solid var(--accent); 
-            border-radius: 50%;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+            perspective: 1200px; 
             display: flex; justify-content: center; align-items: center;
-            font-size: 30px; color: var(--text-primary); cursor: pointer;
+            overflow: hidden; 
+            transition: var(--transition);
+        }
+
+        /* --- SOSOK DI TENGAH (KUNCI EFEK 3D) --- */
+        .center-figure {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 75%; /* Sesuaikan besar siluetnya */
+            object-fit: contain;
             
-            /* UBAH: Kurangi intensitas box-shadow bawaan */
-            box-shadow: 0 0 8px var(--accent-glow);
+            /* KUNCI 3D: Karena radius putaran di JS adalah 180, nilai tengahnya adalah 180. 
+               Dengan mensetting z-index siluet ke 180, gelembung yang ada di depan (>180) akan menutupi siluet, 
+               sedangkan gelembung yang di belakang (<180) akan tertutup oleh siluet! */
+            z-index: 180; 
             
-            /* UBAH: Hapus 'transform' dari transition agar browser tidak bingung saat JS mengupdate transform tiap frame */
-            transition: background-color 0.2s, border-color 0.2s; 
-            
-            /* UBAH: Tambahkan will-change agar browser memprioritaskan elemen ini untuk GPU */
-            will-change: transform;
+            pointer-events: none; /* Agar siluet tidak menghalangi mouse saat mau klik ikon */
+            filter: drop-shadow(0 0 15px var(--accent-glow)); /* Efek neon glow menyesuaikan tema RGB */
+            transition: var(--transition);
         }
 
 
@@ -316,6 +304,8 @@
             <p class="click-hint">*Coba gerakkan mouse di atas area ini dan klik gelembungnya!</p>
 
             <div class="bubble-arena" id="arena">
+               <!-- Tambahkan sosok siluet di tengah arena -->
+                <img src="siluet.png" alt="Avatar" class="center-figure">
                 <div class="bubble"><i class="fa-solid fa-code"></i></div>
                 <div class="bubble"><i class="fa-brands fa-js" style="color: #f7df1e;"></i></div>
                 <div class="bubble"><i class="fa-brands fa-html5" style="color: #e34f26;"></i></div>
