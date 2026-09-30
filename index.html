@@ -449,7 +449,7 @@
     <nav>
         <div class="logo">XAERI<span>SOFT.</span></div>
         <div class="nav-links">
-            <a href="#home">Beranda</a><a href="#about">Tentang</a><a href="#portfolio">Proyek</a><a href="#contact">Berita</a>
+            <a href="#home">Beranda</a><a href="#about">Tentang</a><a href="#portfolio">Proyek</a><a href="#news">Berita</a>
             
             <!-- CONTROLLER WARNA -->
             <div class="theme-controls">
@@ -471,6 +471,7 @@
         </div>
     </nav>
 
+    
     <!-- HERO SECTION -->
     <section id="home">
         <div class="profile-container">
@@ -479,10 +480,9 @@
                 <h1>Wil<br><span id="typing-text">Frontend Web Developer</span></h1>
                 <p>Saya seorang spesialis dalam membangun antarmuka web yang interaktif, futuristik, dan berfokus pada pengalaman pengguna yang luar biasa.</p>
                 <div class="profile-buttons">
-    <a href="#portfolio" class="btn">Lihat Proyek</a>
-    <a href="#news" class="btn btn-outline">Lihat Berita</a> <!-- Ini yang diubah -->
-</div>
-
+                    <a href="#portfolio" class="btn">Lihat Proyek</a>
+                    <a href="#news" class="btn btn-outline">Lihat Berita</a>
+                </div>
             </div>
                             
             <div class="profile-image-area reveal-right">
@@ -531,10 +531,10 @@
         <h2 class="section-title reveal-up">Proyek <span>Terbaik</span></h2>
         <div class="portfolio-grid">
             <div class="portfolio-card reveal-up delay-1">
-                <div class="portfolio-img"><i class="fa-solid fa-laptop-code"></i></div>
+                <div class="portfolio-img"><i class="fa-solid fa-video"></i></div>
                 <div class="portfolio-info">
-                    <h3>SMM Panel Dashboard</h3>
-                    <p>Antarmuka web interaktif dengan sistem navigasi hamburger menu dan simulasi login.</p>
+                    <h3>Wilstream</h3>
+                    <p>Isi deskripsi proyek Wilstream Anda di sini.</p>
                     <a href="#" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
@@ -544,6 +544,14 @@
                     <h3>Live Tracking Map</h3>
                     <p>Aplikasi pemetaan interaktif menggunakan Leaflet.js untuk melacak kapal dan penerbangan real-time.</p>
                     <a href="#" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="portfolio-card reveal-up delay-3">
+                <div class="portfolio-img"><i class="fa-solid fa-robot"></i></div>
+                <div class="portfolio-info">
+                    <h3>Xaerisoft AI</h3>
+                    <p>Isi deskripsi proyek Xaerisoft AI Anda di sini.</p>
+                    <a href="https://xaerisoft.my.id" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -764,8 +772,8 @@
                     let z2 = -b.baseX * sinY + z1 * cosY;
 
                     const scale = (z2 + 250) / 300; 
-                    let opacity = (z2 + 100) / 150; 
-                    if (opacity < 0) opacity = 0; 
+                    let opacity = (z2 + 100)
+                     if (opacity < 0) opacity = 0; 
                     if (opacity > 1) opacity = 1; 
 
                     const isFront = z2 > 0;
@@ -800,6 +808,7 @@
                 musicIcon.style.color = "";
             }
         });
+
       // --- FUNGSI AMBIL BERITA OTOMATIS (REAL-TIME RSS FETCH) ---
 async function fetchRealNews() {
     const newsContainer = document.getElementById("news-container");
