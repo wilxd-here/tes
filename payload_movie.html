@@ -415,9 +415,39 @@
     </a>
   </nav>
 
-  <!-- LOGIKA JAVASCRIPT -->
+  <!-- LOGIKA JAVASCRIPT LOKAL -->
   <script>
-    const API_BASE = '/api/will-movies'; 
+    // Data dummy biar langsung bisa dites di browser
+    const MOCK_DATA = [
+      {
+        title: "Avatar: The Way of Water",
+        slug: "avatar-the-way-of-water",
+        thumbnail: "https://image.tmdb.org/t/p/w500/t6HIqrRAclO2C9S38S3C32A9A2o.jpg",
+        synopsis: "Jake Sully dan Neytiri membentuk keluarga dan melakukan segala kemungkinan untuk tetap bersama di planet Pandora.",
+        serverPlayer: [
+          { server: "Server Utama 1080p", embed: "https://www.youtube.com/embed/d9MyW72ELq0" },
+          { server: "Server Cadangan 720p", embed: "https://www.youtube.com/embed/d9MyW72ELq0" }
+        ]
+      },
+      {
+        title: "Spider-Man: Across the Spider-Verse",
+        slug: "spider-man-across-the-spider-verse",
+        thumbnail: "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj7A2u8.jpg",
+        synopsis: "Miles Morales terlempar ke Multiverse, di mana ia bertemu dengan tim Spider-People yang bertugas melindungi keberadaannya.",
+        serverPlayer: [
+          { server: "Server Fast 1", embed: "https://www.youtube.com/embed/cqGjhVJWtEg" }
+        ]
+      },
+      {
+        title: "The Batman",
+        slug: "the-batman",
+        thumbnail: "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9125M2M7.jpg",
+        synopsis: "Ketika seorang pembunuh berantai yang sadis mulai membunuh tokoh-tokoh politik penting di Gotham, Batman terpaksa menyelidiki korupsi tersembunyi di kota tersebut.",
+        serverPlayer: [
+          { server: "Server VIP", embed: "https://www.youtube.com/embed/mqqft2x_Aa4" }
+        ]
+      }
+    ];
 
     // Elemen DOM
     const movieContainer = document.getElementById('movie-container');
@@ -440,17 +470,23 @@
     const searchInputModal = document.getElementById('search-input-modal');
     const searchBtnModal = document.getElementById('search-btn-modal');
 
-    // Helper Fetch API
+    // Simulasi Fetch Data tanpa Server External
     async function fetchAPI(params) {
-      try {
-        const queryStr = new URLSearchParams(params).toString();
-        const res = await fetch(`${API_BASE}?${queryStr}`);
-        const json = await res.json();
-        return json.status === 'success' ? json.data : [];
-      } catch (err) {
-        console.error('Gagal mengambil data:', err);
-        return [];
-      }
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          if (params.slug) {
+            const result = MOCK_DATA.find(item => item.slug === params.slug);
+            resolve(result || null);
+          } else if (params.action === 'search' && params.query) {
+            const filtered = MOCK_DATA.filter(item => 
+              item.title.toLowerCase().includes(params.query.toLowerCase())
+            );
+            resolve(filtered);
+          } else {
+            resolve(MOCK_DATA);
+          }
+        }, 200);
+      });
     }
 
     // Render Beranda
@@ -465,8 +501,8 @@
       }
 
       const heroMovie = movies[0];
-      if(heroBanner) {
-          heroBanner.style.backgroundImage = `url('${heroMovie.thumbnail || 'https://via.placeholder.com/800x600?text=No+Image'}')`;
+      if(heroBanner && heroMovie) {
+          heroBanner.style.backgroundImage = `url('${heroMovie.thumbnail}')`;
           document.getElementById('hero-title').textContent = heroMovie.title;
           
           const btnTontonHero = document.querySelector('.btn-tonton');
@@ -481,8 +517,8 @@
         const card = document.createElement('div');
         card.className = 'movie-card';
         card.innerHTML = `
-          <img src="${movie.thumbnail || 'https://via.placeholder.com/300x450?text=No+Image'}" class="poster" alt="${movie.title}" loading="lazy">
-          <div class="rating-badge"><i class="fa-solid fa-star"></i> -.-</div>
+          <img src="${movie.thumbnail}" class="poster" alt="${movie.title}" loading="lazy">
+          <div class="rating-badge"><i class="fa-solid fa-star"></i> 8.5</div>
           <div class="card-title" title="${movie.title}">${movie.title}</div>
           <div class="card-year">HD</div>
         `;
@@ -491,7 +527,6 @@
       });
     }
 
-    // Toggle Tampilan View
     function toggleToDetailView() {
       if(heroBanner) heroBanner.classList.add('d-none');
       if(sectionHeaderHome) sectionHeaderHome.classList.add('d-none');
@@ -510,7 +545,6 @@
 
     backHomeBtn.addEventListener('click', toggleToHomeView);
 
-    // Halaman Nonton & Loading Player
     function showPlayerLoading() {
       loadingOverlay.classList.remove('d-none');
       detailIframe.classList.add('d-none');
@@ -543,7 +577,7 @@
         detailTitle.textContent = mainTitle;
         infoTitle.textContent = mainTitle;
         
-        document.getElementById('info-synopsis').textContent = detail.synopsis || detail.description || `Menonton film ${mainTitle} dengan kualitas HD. Silakan pilih server di atas jika video lambat atau tidak dapat diputar.`;
+        document.getElementById('info-synopsis').textContent = detail.synopsis;
         
         detailServerGrid.innerHTML = '';
         detail.serverPlayer.forEach((srv, index) => {
@@ -574,7 +608,6 @@
       }
     }
 
-    // Pencarian
     async function loadHome() {
       movieContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); margin-top: 20px;"><i class="fa-solid fa-spinner fa-spin"></i> Memuat film...</p>';
       const movies = await fetchAPI({ action: 'home' });
@@ -622,7 +655,6 @@
       }
     });
 
-    // Navigasi Bawah Event
     navItems.forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -644,14 +676,12 @@
           searchInputModal.value = '';
           setTimeout(() => searchInputModal.focus(), 100);
         }
-        else if (text === 'simpan') {
-          alert("Fitur Simpan (Bookmark) akan segera hadir!");
-        }
       });
     });
 
-    // Inisialisasi awal
+    // Jalankan pas pertama buka
     loadHome();
   </script>
+
 </body>
 </html>
