@@ -120,9 +120,9 @@
                     statusText.textContent = "COMPLETE";
                     statusText.style.color = "#ffffff";
 
-                    // Pindah ke payload_index.txt setelah selesai
+                    // PERBAIKAN: Arahkan ke file dengan ekstensi .html, BUKAN .txt
                     setTimeout(() => {
-                        window.location.href = "payload_index.txt";
+                        window.location.href = "payload_index.html"; 
                     }, 500);
                 } else {
                     progressBar.style.width = progress + "%";
