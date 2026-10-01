@@ -9,6 +9,10 @@
       "destination": "https://wildev-ruby.vercel.app/:path*"
     },
     {
+      "source": "/api/:path*",
+      "destination": "https://wildev-ruby.vercel.app/api/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/"
     }
