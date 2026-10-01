@@ -356,8 +356,10 @@
                 <div class="portfolio-info">
                     <h3>Live Tracking Map</h3>
                     <p>Mendeteksi radar pesawat menggunakan maps satelit</p>
-                    <a href="#" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
+                    <a href="/wilstream" class="portfolio-link">
+  Lihat Detail <i class="fa-solid fa-arrow-right"></i>
+</a>
+    </div>
             </div>
             <div class="portfolio-card reveal-up delay-3">
                 <div class="portfolio-img"><i class="fa-solid fa-robot"></i></div>
