@@ -1,67 +1,57 @@
 export default async function handler(req, res) {
-  const API_KEY = process.env.MOVIE_API_KEY; 
+  // Set CORS biar gak diblokir browser
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+  
+  if (req.method === 'OPTIONS') return res.status(200).end();
+
   const { action, query, slug } = req.query;
-
-  // 1. Cek apakah Environment Variable terbaca
-  if (!API_KEY) {
-    return res.status(500).json({ 
-      status: 'error', 
-      message: 'MOVIE_API_KEY tidak ditemukan! Cek Environment Variables di Vercel.' 
-    });
-  }
-
-  const BASE_URL = 'https://api.themoviedb.org/3';
-  const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+  // Pastikan TMDB_API_KEY udah diisi di Environment Variables Vercel
+  const TMDB_KEY = process.env.TMDB_API_KEY; 
 
   try {
-    let fetchUrl = '';
+    // 1. Jika klik detail film (menggunakan ID TMDB sebagai slug)
     if (slug) {
-      fetchUrl = `${BASE_URL}/movie/${slug}?api_key=${API_KEY}&language=id-ID`;
-    } else if (action === 'search') {
-      fetchUrl = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=id-ID`;
-    } else if (action === 'rating') {
-      fetchUrl = `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=id-ID`;
-    } else {
-      fetchUrl = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=id-ID`;
-    }
+      const detailRes = await fetch(`https://api.themoviedb.org/3/movie/${slug}?api_key=${TMDB_KEY}&language=id-ID`);
+      const detail = await detailRes.json();
 
-    const response = await fetch(fetchUrl);
-    const rawData = await response.json();
-
-    // 2. Jika TMDB menolak request (misal API Key salah)
-    if (!response.ok) {
-      return res.status(response.status).json({
-        status: 'error',
-        pesan_tmdb: rawData.status_message || 'API Key TMDB tidak valid / ditolak TMDB',
-        code: response.status
-      });
-    }
-
-    // 3. Response untuk Detail Film
-    if (slug) {
       return res.status(200).json({
         status: 'success',
         data: {
-          title: rawData.title,
-          synopsis: rawData.overview || 'Sinopsis tidak tersedia.',
+          title: detail.title,
+          synopsis: detail.overview || 'Tidak ada deskripsi.',
+          thumbnail: detail.poster_path ? `https://image.tmdb.org/t/p/w500${detail.poster_path}` : '',
           serverPlayer: [
-            { server: "Server 1 (Utama)", embed: `https://vidsrc.xyz/embed/movie/${rawData.id}` },
-            { server: "Server 2 (Alternatif)", embed: `https://multiembed.mov/?video_id=${rawData.id}&tmdb=1` }
+            { server: "Server 1 (Smashy)", embed: `https://player.smashy.stream/movie/${detail.id}` },
+            { server: "Server 2 (2Embed)", embed: `https://www.2embed.cc/embed/${detail.id}` }
           ]
         }
       });
     }
 
-    // 4. Response untuk List Film
-    const formattedMovies = (rawData.results || []).map(movie => ({
-      title: movie.title,
-      thumbnail: movie.poster_path ? `${IMG_URL}${movie.poster_path}` : 'https://via.placeholder.com/300x450?text=No+Image',
-      slug: movie.id.toString()
+    // 2. Tentukan Endpoint TMDB berdasarkan action
+    let endpoint = `https://api.themoviedb.org/3/movie/popular?api_key=${TMDB_KEY}&language=id-ID&page=1`;
+    if (action === 'search' && query) {
+      endpoint = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query=${encodeURIComponent(query)}&language=id-ID`;
+    } else if (action === 'rating') {
+      endpoint = `https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=id-ID&page=1`;
+    }
+
+    const response = await fetch(endpoint);
+    const data = await response.json();
+
+    // Map data TMDB ke format yang dibaca HTML frontend
+    const movies = (data.results || []).map(item => ({
+      title: item.title,
+      slug: item.id.toString(),
+      // PENTING: Wajib gabungkan URL base TMDB ini biar gambarnya gak pecah/rusak
+      thumbnail: item.poster_path 
+        ? `https://image.tmdb.org/t/p/w500${item.poster_path}` 
+        : 'https://via.placeholder.com/300x450?text=No+Image'
     }));
 
-    return res.status(200).json({ status: 'success', data: formattedMovies });
-
-  } catch (error) {
-    return res.status(500).json({ status: 'error', message: error.message });
+    return res.status(200).json({ status: 'success', data: movies });
+  } catch (err) {
+    return res.status(500).json({ status: 'error', message: err.message });
   }
 }
