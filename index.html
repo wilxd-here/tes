@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XAERISOFT</title>
+    <!-- Google Fonts: Noto Sans JP & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Plus+Jakarta+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .kanji-top {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 10px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            color: #444444;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .logo-title {
+            font-size: 32px;
+            font-weight: 200;
+            letter-spacing: 14px;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            margin-left: 14px; /* Menyelaraskan offset letter-spacing */
+        }
+
+        .logo-subtitle {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 11px;
+            font-weight: 300;
+            color: #666666;
+            letter-spacing: 6px;
+            margin-bottom: 35px;
+        }
+
+        .loader-box {
+            width: 140px;
+            height: 1px;
+            background: #222222;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #ffffff;
+            transition: width 0.2s ease-out;
+        }
+
+        .status-text {
+            margin-top: 18px;
+            font-size: 9px;
+            font-weight: 300;
+            color: #444444;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <span class="kanji-top">システム起動</span>
+        <h1 class="logo-title">XAERISOFT</h1>
+        <p class="logo-subtitle">ゼリソフト ・ 読込中</p>
+
+        <div class="loader-box">
+            <div class="progress-bar"></div>
+        </div>
+
+        <p class="status-text">INITIALIZING</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const progressBar = document.querySelector(".progress-bar");
+            const statusText = document.querySelector(".status-text");
+            let progress = 0;
+
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 8) + 4;
+
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    progressBar.style.width = "100%";
+                    statusText.textContent = "COMPLETE";
+                    statusText.style.color = "#ffffff";
+
+                    // Pindah ke payload_index.txt setelah selesai
+                    setTimeout(() => {
+                        window.location.href = "payload_index.txt";
+                    }, 500);
+                } else {
+                    progressBar.style.width = progress + "%";
+                    if (progress > 50) {
+                        statusText.textContent = "LOADING DATA";
+                    }
+                }
+            }, 80);
+        });
+    </script>
+
+</body>
+</html>
