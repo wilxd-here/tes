@@ -347,7 +347,8 @@
         <h3>Wilstream</h3>
         <p>Web menonton film movie</p>
         <!-- Tambahkan onclick di sini -->
-        <a href="/#" class="portfolio-link">
+        <a href="/wilstream" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
+
           
           </div>
 </div>
