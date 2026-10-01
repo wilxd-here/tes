@@ -308,7 +308,7 @@
 
     <!-- ABOUT & 3D SKILL SPHERE SECTION -->
     <section id="about">
-        <h2 class="section-title reveal-up">Abaout Me <span></span></h2>
+        <h2 class="section-title reveal-up">About Me <span></span></h2>
         <div class="about-container">
         <p class="about-desc-reveal-up delay-1">
                 Berikut bahasa pemrograman dan teknologi yang bisa gua pahami(sedikit😁)
@@ -347,7 +347,7 @@
         <h3>Wilstream</h3>
         <p>Web menonton film movie</p>
         <!-- Tambahkan onclick di sini -->
-        <a href="#" onclick="bukaPayload(event, 'payload_movie.txt')" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="#" onclick="bukaPayload(event, 'payload_movie.html')" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
     </div>
 </div>
 
