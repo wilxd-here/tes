@@ -137,15 +137,20 @@
         /* BOLA-BOLA 3D DENGAN ANIMASI RGB BORDER */
         .bubble {
             position: absolute; 
-            width: 45px; /* Ukuran diperbesar agar logo terlihat jelas */
-            height: 45px; 
+            width: 35px; 
+            height: 35px; 
             background: rgba(10, 10, 10, 0.85); 
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
-            font-size: 22px; cursor: pointer;
+            
+            /* Ubah angka di bawah ini untuk mengecilkan logonya */
+            font-size: 16px; /* Awalnya 22px, ubah ke 16px atau 18px sesuai selera */
+            
+            cursor: pointer;
             will-change: transform; 
-            animation: rgb3DAnimation 4s linear infinite; /* Animasi RGB diaktifkan kembali */
+            animation: rgb3DAnimation 4s linear infinite; 
         }
+
         
         /* KEYFRAMES RGB UNTUK BORDER & GLOW SAJA (Logo tetap pada warna aslinya) */
         @keyframes rgb3DAnimation {
