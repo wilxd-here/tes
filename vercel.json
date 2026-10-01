@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/wilstream",
+      "destination": "https://wildev-ruby.vercel.app"
+    },
+    {
+      "source": "/wilstream/:path*",
+      "destination": "https://wildev-ruby.vercel.app/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/"
     }
