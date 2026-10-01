@@ -347,8 +347,9 @@
         <h3>Wilstream</h3>
         <p>Web menonton film movie</p>
         <!-- Tambahkan onclick di sini -->
-        <a href="#" onclick="bukaPayload(event, 'payload_movie.html')" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
+        <a href="/#" class="portfolio-link">
+          
+          </div>
 </div>
 
             <div class="portfolio-card reveal-up delay-2">
@@ -356,7 +357,7 @@
                 <div class="portfolio-info">
                     <h3>Live Tracking Map</h3>
                     <p>Mendeteksi radar pesawat menggunakan maps satelit</p>
-                    <a href="/wilstream" class="portfolio-link">
+                    <a href="/#" class="portfolio-link">
   Lihat Detail <i class="fa-solid fa-arrow-right"></i>
 </a>
     </div>
