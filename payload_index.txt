@@ -347,7 +347,7 @@
         <h3>Wilstream</h3>
         <p>Web menonton film movie</p>
         <!-- Tambahkan onclick di sini -->
-        <a href="/wilstream" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="/wilstream" onclick="bukaPayload(event, '/wilstream')" class="portfolio-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
 
           
           </div>
@@ -600,31 +600,17 @@
             fetchRealNews();
         });
               // Tambahkan kode ini di atas penutup
-        function bukaPayload(event, url) {
-            event.preventDefault(); // Mencegah layar lompat ke atas karena href="#"
-            
-            // Opsional: Bikin layar transisi fade-out perlahan
-            document.body.style.transition = "opacity 0.3s ease";
-            document.body.style.opacity = "0";
+function bukaPayload(event, url) {
+    event.preventDefault(); 
+    
+    document.body.style.transition = "opacity 0.3s ease";
+    document.body.style.opacity = "0";
 
-            setTimeout(() => {
-                fetch(url)
-                    .then(response => {
-                        if (!response.ok) throw new Error('File tidak ditemukan');
-                        return response.text();
-                    })
-                    .then(html => {
-                        document.open();
-                        document.write(html);
-                        document.close();
-                    })
-                    .catch(err => {
-                        console.error(err);
-                        alert("Gagal memuat halaman proyek!");
-                        document.body.style.opacity = "1"; // Balikin layar kalau gagal
-                    });
-            }, 300);
-        }
+    setTimeout(() => {
+        window.location.href = url;
+    }, 300);
+}
+
 
     </script>
 </body>
