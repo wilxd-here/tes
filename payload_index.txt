@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>try{var t=localStorage.getItem("wd-theme");if(t==="light"||t==="mix"){document.documentElement.classList.add(t);document.documentElement.dataset.theme=t}}catch(e){}</script>
-<title>WILLDEV — ruang milik Wil</title>
+<title>WILL Portofolio</title>
 <!-- Font: Space Grotesk (display) + JetBrains Mono (label/badge) + Instrument Serif (editorial). Ikon: FontAwesome (CDN, sama seperti file asli). -->
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -471,8 +471,8 @@ html.mix .mus{border:2px solid #0a0a0a;border-radius:0 24px 0 24px}
         <div class="body"><div class="ic fa-solid fa-video" aria-hidden="true"></div><p>Web menonton film movie</p><br><a href="/wilstream/" data-nav>Lihat Detail</a></div></button></div>
       <div class="pnl"><button aria-expanded="false"><div class="bar"><i></i><i></i><i></i><span class="url">live-tracking-map</span></div><h3>Live Tracking Map</h3>
         <div class="body"><div class="ic fa-solid fa-earth-americas" aria-hidden="true"></div><p>Mendeteksi radar pesawat menggunakan maps satelit</p><br><a href="/#">Lihat Detail →</a></div></button></div>
-      <div class="pnl"><button aria-expanded="false"><div class="bar"><i></i><i></i><i></i><span class="url"></span></div><h3>Xaerisoft AI</h3>
-        <div class="body"><div class="ic fa-solid fa-robot" aria-hidden="true"></div><p>Chatbot xaerisoft ai Menggunakan html</p><br><a href="https://xaerisoft.my.id" data-nav>Lihat Detail →</a></div></button></div>
+      <div class="pnl"><button aria-expanded="false"><div class="bar"><i></i><i></i><i></i><span class="url">/Xaerisoft AI</span></div><h3>Xaerisoft AI</h3>
+        <div class="body"><div class="ic fa-solid fa-robot" aria-hidden="true"></div><p>Chatbot xaerisoft ai </p><br><a href="/XaerisoftAI/" data-nav>Lihat Detail →</a></div></button></div>
     </div>
   </section>
 

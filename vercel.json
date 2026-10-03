@@ -15,6 +15,18 @@
     {
       "source": "/api/:path*",
       "destination": "https://wildev-ruby.vercel.app/api/:path*"
+    },
+    {
+      "source": "/XaerisoftAI",
+      "destination": "https://jjdkai.vercel.app/"
+    },
+    {
+      "source": "/XaerisoftAI/",
+      "destination": "https://jjdkai.vercel.app/"
+    },
+    {
+      "source": "/XaerisoftAI/:path*",
+      "destination": "https://jjdkai.vercel.app/:path*"
     }
   ]
 }
