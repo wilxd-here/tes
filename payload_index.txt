@@ -34,7 +34,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #loader em::after{content:"";position:absolute;inset:0;background:var(--accent);animation:ld 1.1s ease forwards}
 @keyframes pop{from{transform:translateY(60%) rotate(8deg);opacity:0}}
 @keyframes ld{from{transform:translateX(-100%)}}
-#curtain{position:fixed;inset:0;z-index:950;background:var(--ink);transform:translateY(100%);pointer-events:none}
+#curtain{position:fixed;inset:0;z-index:950;background:var(--accent);transform:translateY(100%);pointer-events:none}
 
 /* LANDING */
 #space{position:fixed;inset:0;overflow:hidden;z-index:5}
@@ -237,6 +237,44 @@ header.top{top:12px;left:3vw;right:3vw;padding:10px 18px;border:1px solid var(--
 .o1{top:76.5%}.o2{top:78%}.greet{display:none}
 .ph{width:min(240px,70%)}.sticker{margin-right:0}.mus{padding-left:10px}}
 @media(max-width:700px) and (max-height:640px){.big{font-size:27vw}.pic{width:min(40vw,28vh)}}
+
+/* ===== v4: PUTIH + FITUR TAMBAHAN ===== */
+html.light,.paper{--bg:#F5F5F2;--surface:#fff;--surface-2:#ECECE8;--text:#0b0b0d;--ink:var(--text);--muted:#5d5d66;--mute:var(--muted);--border:rgba(0,0,0,.14);--line:var(--border);--accent-text:#5B2FE0;--accent-soft:rgba(124,77,255,.12)}
+html.light .paper{--bg:#08080A;--surface:#111114;--surface-2:#18181D;--text:#F5F5F2;--ink:var(--text);--muted:#9B9BA3;--mute:var(--muted);--border:rgba(255,255,255,.12);--line:var(--border);--accent-text:#B49CFF;--accent-soft:rgba(124,77,255,.15)}
+.paper{background:var(--bg);color:var(--text);margin:6vh 2vw;border-radius:44px}
+html.light header.top{background:rgba(255,255,255,.88)}html.light body::after{filter:invert(1)}
+.marq.w{background:var(--text);color:var(--bg);border:0}.marq.w .ol{-webkit-text-stroke-color:var(--bg)}.marq.w i{color:var(--accent)}
+.marq.acc{background:var(--accent);color:#fff;border:0}.marq.acc .ol{-webkit-text-stroke-color:#fff}.marq.acc i{color:#fff}
+.marq.rev div{animation-direction:reverse;animation-duration:38s}.marq:hover div{animation-play-state:paused}
+.o3>button{background:var(--text);color:var(--bg)}
+.tag.w{background:var(--text);color:var(--bg);padding:4px 14px;border-radius:30px;transform:rotate(-5deg)}
+.pic{touch-action:none}.pic .bp{transition:transform .15s,background .4s}.pic.alt .bp{background:var(--text)}
+.stk{position:absolute;width:112px;height:112px;left:-34%;top:18%;color:var(--text);animation:spin 20s linear infinite;pointer-events:none}
+#curtain::after{content:"WILLDEV.";position:absolute;inset:0;display:grid;place-items:center;font:700 14vw var(--d);color:#fff;letter-spacing:-.05em}
+.tr{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:998;background:var(--accent-text)}
+@media(pointer:coarse){.tr{display:none}}
+.mus .sb{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;font-size:16px;transition:.2s}
+.mus .sb:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(-12deg)}
+.pill{border:1px solid var(--border);border-radius:40px;padding:8px 18px;font:500 14px var(--m);transition:.25s}
+.pill:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+#nrefresh{margin:-20px 0 20px}.fbtn{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+#prog{position:fixed;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;z-index:70}
+#toast{position:fixed;left:50%;bottom:78px;transform:translate(-50%,20px);background:var(--accent);color:#fff;font:500 14px var(--m);padding:8px 18px;border-radius:40px;opacity:0;pointer-events:none;transition:.3s;z-index:900}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#pal{position:fixed;inset:0;z-index:850;display:grid;align-items:start;justify-items:center;padding-top:14vh;background:#000a;opacity:0;visibility:hidden;transition:.3s}
+#pal.on{opacity:1;visibility:visible}
+#pal .bx{width:min(440px,92vw);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:10px;box-shadow:8px 8px 0 var(--accent)}
+#pin{width:100%;background:none;border:0;border-bottom:1px solid var(--border);padding:12px;color:var(--text);font:400 16px var(--m);outline:none}
+#pl{list-style:none;margin-top:6px}#pl li{padding:10px 12px;border-radius:10px;font:500 15px var(--d);display:flex;justify-content:space-between;gap:10px;cursor:pointer}
+#pl li.s{background:var(--accent);color:#fff}#pl li small{font:400 12px var(--m);opacity:.7}
+html.gila .t,html.gila .ft{animation:wob 2.4s ease-in-out infinite alternate}
+@keyframes wob{from{transform:rotate(-1.2deg) skewX(-2deg)}to{transform:rotate(1.2deg) skewX(2deg)}}
+.arena{touch-action:pan-y}
+@media(max-width:700px){
+.stk{display:none}.paper{margin:4vh 8px;border-radius:30px}
+.mus{top:12px;bottom:auto;left:50%;right:auto;transform:translateX(-50%);padding:4px 4px 4px 10px}.mus .eq{display:none}
+body.insite .mus{top:auto;bottom:12px;left:auto;right:10px;transform:none}
+.o2{top:77.5%}}
 </style>
 </head>
 <body>
@@ -254,16 +292,16 @@ header.top{top:12px;left:3vw;right:3vw;padding:10px 18px;border:1px solid var(--
     <div class="pic" id="pic">
       <svg viewBox="0 0 100 100" style="position:absolute;inset:-34%;width:168%;height:168%;opacity:.35" aria-hidden="true"><g stroke="#f2f0eb" stroke-width=".4"><path d="M50 50L98 38M50 50L102 52M50 50L96 68M50 50L2 62M50 50L-2 46M50 50L6 30M50 50L40 -2M50 50L62 -2"/></g></svg>
       <i class="bp"></i><button id="photoBtn" aria-label="Foto profil WillDev — klik untuk bereaksi"><img src="pp.jpg" alt="Foto profil WillDev"></button>
-      <span class="bdg b1">Lvl 15 Dev</span><span class="bdg ok b2">Coding on Acode</span><span class="bdg fill b3">Frontend Dev</span><span class="mark" aria-hidden="true">!?</span><span class="blush" aria-hidden="true">///</span>
+      <span class="bdg b1">Lvl 15 Dev</span><span class="bdg ok b2">Coding on Acode</span><span class="bdg fill b3">Frontend Dev</span><span class="mark" aria-hidden="true">!?</span><svg class="stk" viewBox="0 0 100 100" aria-hidden="true"><defs><path id="cp" d="M50 50m-38 0a38 38 0 1 1 76 0a38 38 0 1 1-76 0"/></defs><text font-size="8.5" font-family="JetBrains Mono,monospace" letter-spacing="1" fill="currentColor"><textPath href="#cp">• WILLDEV • FRONTEND DEV • PLAYGROUND </textPath></text><circle cx="50" cy="50" r="7" fill="var(--accent)"/></svg><span class="blush" aria-hidden="true">///</span>
       <span class="say" id="say" role="status"></span>
     </div>
   </div>
   <div class="layer" data-d="40">
     <span class="spark" style="left:30%;top:14%">✦</span><span class="spark" style="right:28%;top:60%;animation-delay:1s;font-size:14px">✦</span><span class="spark" style="left:44%;top:84%;animation-delay:2s;font-size:12px">✧</span>
     <i class="dot" style="left:22%;top:36%"></i><i class="dot" style="right:24%;top:30%;width:4px;height:4px"></i><i class="dot" style="left:62%;top:88%"></i><i class="hl" style="left:8%;top:62%"></i><i class="hl" style="right:7%;top:36%;width:60px"></i>
-    <span class="greet">👋 Yo, welcome to my space</span>
+    <span class="greet">👋 Yo, welcome to my space · <b id="clk"></b></span>
     <span class="tag" style="left:6%;top:50%">( frontend web developer )</span>
-    <span class="tag" style="right:6%;top:46%">wil developer amatir ↘</span>
+    <span class="tag w" style="right:6%;top:46%">wil developer amatir ↘</span>
   </div>
   <div class="layer" data-d="55" id="orbs">
     <div class="orb o1"><button data-go="about" data-f="440">SKILLS</button></div>
@@ -279,7 +317,7 @@ header.top{top:12px;left:3vw;right:3vw;padding:10px 18px;border:1px solid var(--
   <header class="top"><button id="back" aria-label="Kembali ke ruang utama">Will<span class="pu">Dev</span>.</button>
     <nav><a class="l" href="#about">About</a><a class="l" href="#skills">Skills</a><a class="l" href="#projects">Projects</a><a class="l" href="#news">Berita</a>
     </nav></header>
-  <div id="mus" class="mus"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><button id="music-icon" class="fa-solid fa-volume-xmark" title="Putar Musik" aria-label="Putar atau hentikan musik"></button></div>
+  <div id="mus" class="mus"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><button id="cmdf" class="sb" aria-label="Menu cepat (Ctrl+K)">⌕</button><button id="theme" class="sb" aria-label="Ganti tema gelap atau terang">◐</button><button id="music-icon" class="fa-solid fa-volume-xmark" title="Putar Musik" aria-label="Putar atau hentikan musik"></button></div>
 
   <section id="about"><div class="wrap">
     <div class="rv"><p class="kicker">halo, ini ruang gua.</p>
@@ -291,7 +329,7 @@ header.top{top:12px;left:3vw;right:3vw;padding:10px 18px;border:1px solid var(--
   </div>
   <dl class="facts rv"><div><dt>role</dt><dd>Frontend Web Developer</dd></div><div><dt>status</dt><dd>Beginner Developer</dd></div><div><dt>stack</dt><dd>HTML5 · CSS3 · JavaScript +9</dd></div><div><dt>mutualan</dt><dd>TikTok / Instagram</dd></div></dl></section>
   <div class="sep" id="about2"></div>
-  <div class="marq" aria-hidden="true"><div><span>Frontend Web Developer</span><i>✦</i><span class="ol">WillDev</span><i>✦</i><span>Wil Developer Amatir</span><i>✦</i><span class="ol">Ayoo mutualann</span><i>✦</i><span>Frontend Web Developer</span><i>✦</i><span class="ol">WillDev</span><i>✦</i><span>Wil Developer Amatir</span><i>✦</i><span class="ol">Ayoo mutualann</span><i>✦</i></div></div>
+  <div class="marq w" aria-hidden="true"><div><span>Frontend Web Developer</span><i>✦</i><span class="ol">WillDev</span><i>✦</i><span>Wil Developer Amatir</span><i>✦</i><span class="ol">Ayoo mutualann</span><i>✦</i><span>Frontend Web Developer</span><i>✦</i><span class="ol">WillDev</span><i>✦</i><span>Wil Developer Amatir</span><i>✦</i><span class="ol">Ayoo mutualann</span><i>✦</i></div></div>
 
   <section id="skills" style="padding-bottom:0"><p class="kicker rv">yang bisa gua pakai</p><h2 class="t rv"><span class="ol">Skills</span><span class="pu">.</span></h2>
     <div class="arena rv" id="arena" aria-label="Bola 3D teknologi, gerakkan kursor untuk memutar">
@@ -300,7 +338,7 @@ header.top{top:12px;left:3vw;right:3vw;padding:10px 18px;border:1px solid var(--
     <div class="chips" id="chips" aria-label="Daftar teknologi"></div>
   </section>
 
-  <section id="projects"><p class="kicker rv">karya, bukan sekadar kartu</p><h2 class="t rv">Proyek<br><span class="ol">berbasis web</span></h2>
+  <section id="projects" class="paper"><p class="kicker rv">karya, bukan sekadar kartu</p><h2 class="t rv">Proyek<br><span class="ol">berbasis web</span></h2>
     <div class="pj rv" id="pj">
       <div class="pnl open"><button aria-expanded="true"><div class="bar"><i></i><i></i><i></i><span class="url">/wilstream/</span></div><h3>Wilstream</h3>
         <div class="body"><div class="ic fa-solid fa-video" aria-hidden="true"></div><p>Web menonton film movie</p><br><a href="/wilstream/" data-nav>Lihat Detail</a></div></button></div>
@@ -311,23 +349,28 @@ header.top{top:12px;left:3vw;right:3vw;padding:10px 18px;border:1px solid var(--
     </div>
   </section>
 
+  <div class="marq acc rev" aria-hidden="true"><div><span>Frontend Web Developer</span><i>✦</i><span class=ol>WillDev</span><i>✦</i><span>Wil Developer Amatir</span><i>✦</i><span class=ol>Ayoo mutualann</span><i>✦</i><span>Frontend Web Developer</span><i>✦</i><span class=ol>WillDev</span><i>✦</i><span>Wil Developer Amatir</span><i>✦</i><span class=ol>Ayoo mutualann</span><i>✦</i></div></div>
   <section id="news"><p class="kicker rv">diambil otomatis dari RSS</p><h2 class="t rv">Berita<br><span class="ol">terkini Indonesia</span></h2>
+    <button class="pill mag" id="nrefresh">↻ muat ulang</button>
     <div class="nws" id="news-container"><p><i class="fa-solid fa-spinner fa-spin"></i> Memuat berita terbaru dari media resmi...</p></div>
   </section>
 
   <footer><p class="kicker">cari aku di sini</p>
-    <div class="soc">
+    <div class="soc" id="soc">
       <a href="https://tiktok.com/@xaerisoft" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
       <a href="https://www.instagram.com/bknwil?stkn=aXhyZW0ybjc5NWU3" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
       <a href="https://whatsapp.com/channel/0029VbC7s6w7T8bebeuFFM1O" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
       <a href="https://t.me/@wilajaa" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a></div>
     <div class="ft">WILL<span class="ol">DEV</span></div>
+    <div class="fbtn"><button id="top" class="pill mag">↑ ke atas</button><button id="again" class="pill mag">◐ balik ke ruang</button></div>
     <p style="margin-top:20px;color:var(--mute)">&copy; 2026 WilDev. all right Reversed <button id="star" aria-label="Bintang kecil">✦</button></p>
   </footer>
 </div>
 
-<div id="eggs" role="dialog" aria-label="Easter eggs"><div class="bx"><h3>Easter eggs</h3><p style="color:var(--mute)">Ada <b id="cnt">0</b>/4 yang sudah ketemu.</p>
-<ul><li id="e1">Klik huruf WILLDEV 5×</li><li id="e2">Klik fotonya 3×</li><li id="e3">Ada bintang kecil di footer…</li><li id="e4">Bintang kecil di landing, klik 3×</li></ul>
+<div id="pal" role="dialog" aria-label="Menu cepat"><div class="bx"><input id="pin" placeholder="ketik… (ada yang rahasia 👀)" autocomplete="off" aria-label="Cari menu"><ul id="pl"></ul></div></div>
+<div id="toast" role="status"></div><div id="prog"></div>
+<div id="eggs" role="dialog" aria-label="Easter eggs"><div class="bx"><h3>Easter eggs</h3><p style="color:var(--mute)">Ada <b id="cnt">0</b>/5 yang sudah ketemu.</p>
+<ul><li id="e1">Klik huruf WILLDEV 5×</li><li id="e2">Klik fotonya 3×</li><li id="e3">Ada bintang kecil di footer…</li><li id="e4">Bintang kecil di landing, klik 3×</li><li id="e5">Buka ⌕ lalu ketik: gila</li></ul>
 <button id="eclose" style="border-bottom:1.5px solid;margin-top:10px;font:800 14px var(--d)">TUTUP</button></div></div>
 <audio id="bg-music" src="music.mp3" loop></audio>
 
@@ -348,13 +391,17 @@ setTimeout(()=>$('#loader').classList.add('done'),2600);
 const sp=$('#space'),ring=$('#ring'),cur=$('#cur'),layers=$$('.layer'),orbs=$$('.orb');let rx=mx,ry=my;
 addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx}px,${my}px)`});
 document.addEventListener('pointerover',e=>{ring.classList.toggle('big',!!e.target.closest('a,button,.bubble'))});
+const trs=FINE&&!RM?[...Array(6)].map((_,i)=>{const el=document.createElement('i');el.className='tr';const z=7-i;el.style.cssText=`width:${z}px;height:${z}px;margin:${-z/2}px 0 0 ${-z/2}px;opacity:${.5-i*.07}`;document.body.appendChild(el);return{el,x:0,y:0}}):[];
+let dr=false,sx=0,sy=0,dx=0,dy=0,vx2=0,vy2=0,moved=0;
 function loop(){
   rx+=(mx-rx)*.15;ry+=(my-ry)*.15;ring.style.transform=`translate(${rx}px,${ry}px)`;
+  {let px=rx,py=ry;trs.forEach(t=>{t.x+=(px-t.x)*.3;t.y+=(py-t.y)*.3;t.el.style.transform=`translate(${t.x}px,${t.y}px)`;px=t.x;py=t.y})}
   if(onSpace&&!RM){
     cx+=(mx-cx)*.06;cy+=(my-cy)*.06;
     const nx=cx/innerWidth-.5,ny=cy/innerHeight-.5;
     layers.forEach(l=>{const d=+l.dataset.d;l.style.transform=`translate3d(${nx*d}px,${ny*d}px,0)`});
     let mp=0;orbs.forEach(o=>{const r=o.getBoundingClientRect(),dx=mx-(r.left+r.width/2),dy=my-(r.top+r.height/2),p=Math.max(0,1-Math.hypot(dx,dy)/190);mp=Math.max(mp,p);o.firstElementChild.style.setProperty('--p',p.toFixed(2))});sp.classList.toggle('hot',mp>.15);
+    if(!dr){vx2+=-dx*.08;vy2+=-dy*.08;vx2*=.8;vy2*=.8;dx+=vx2;dy+=vy2}else{vx2=vy2=0}$('#pic').style.translate=(Math.abs(dx)+Math.abs(dy)>.3||dr)?dx.toFixed(1)+'px '+dy.toFixed(1)+'px':'';
     const pb=$('#photoBtn'),pr=pb.getBoundingClientRect(),pc=$('#pic');pc.style.setProperty('--bx',(-nx*30).toFixed(1)+'px');pc.style.setProperty('--by',(-ny*30).toFixed(1)+'px');pb.style.transform=`rotateY(${((mx-pr.left-pr.width/2)/innerWidth)*30}deg) rotateX(${-((my-pr.top-pr.height/2)/innerHeight)*30}deg)`;
   }
   requestAnimationFrame(loop)}
@@ -369,8 +416,8 @@ function enter(fn){if(busy)return;busy=true;
   cu.style.transition='none';cu.style.transform='translateY(100%)';cu.offsetHeight;
   cu.style.transition='transform .55s cubic-bezier(.7,0,.2,1)';cu.style.transform='translateY(0)';
   setTimeout(()=>{fn();cu.style.transform='translateY(-100%)';setTimeout(()=>busy=false,600)},580)}
-function toSite(id){enter(()=>{$('#space').classList.add('hide');$('#site').classList.remove('hide');onSpace=false;scrollTo(0,0);if(id)setTimeout(()=>document.getElementById(id).scrollIntoView(),30);watch()})}
-function toSpace(){enter(()=>{$('#site').classList.add('hide');$('#space').classList.remove('hide');onSpace=true;scrollTo(0,0)})}
+function toSite(id){enter(()=>{$('#space').classList.add('hide');$('#site').classList.remove('hide');onSpace=false;document.body.classList.add('insite');scrollTo(0,0);if(id)setTimeout(()=>document.getElementById(id).scrollIntoView(),30);watch()})}
+function toSpace(){enter(()=>{$('#site').classList.add('hide');$('#space').classList.remove('hide');onSpace=true;document.body.classList.remove('insite');scrollTo(0,0)})}
 $$('[data-go]').forEach(b=>b.addEventListener('click',()=>{beep(+b.dataset.f||500);const t=b.dataset.go;toSite(t==='about2'?'about':t==='about'&&b.classList.contains('go')?'about':t==='about'?'skills':t)}));
 $('#back').onclick=toSpace;
 
@@ -393,9 +440,11 @@ T.forEach((t,i)=>{
   bs.push({el,x:Math.cos(th)*r*R,y:y*R,z:Math.sin(th)*r*R});
   ['pointerenter','focus','click'].forEach(ev=>el.addEventListener(ev,()=>show(i)));el.addEventListener('click',()=>beep(600+i*20));
   const c=document.createElement('button');c.textContent=t[1];c.onclick=()=>{show(i);beep(600+i*20)};$('#chips').appendChild(c)});
+const rc=document.createElement('button');rc.textContent='🎲 acak';rc.onclick=()=>{const i=Math.floor(Math.random()*T.length);show(i);beep(500+i*40)};$('#chips').appendChild(rc);
 let tx=.012,ty2=.015,vx=0,vy=0,ax=0,ay=0,vis=false;
 arena.addEventListener('mousemove',e=>{const r=arena.getBoundingClientRect();ty2=(e.clientX-r.left-r.width/2)*.00002;tx=-(e.clientY-r.top-r.height/2)*.00002});
 arena.addEventListener('mouseleave',()=>{tx=.0012;ty2=.0015});
+arena.addEventListener('touchmove',e=>{const t=e.touches[0],r=arena.getBoundingClientRect();ty2=(t.clientX-r.left-r.width/2)*.00006;tx=-(t.clientY-r.top-r.height/2)*.00006},{passive:true});arena.addEventListener('touchend',()=>{tx=.0012;ty2=.0015});
 new IntersectionObserver(e=>{vis=e[0].isIntersecting}).observe(arena);
 (function a3(){if(vis&&!RM){vx+=(tx-vx)*.05;vy+=(ty2-vy)*.05;ax+=vx;ay+=vy;const cX=Math.cos(ax),sX=Math.sin(ax),cY=Math.cos(ay),sY=Math.sin(ay);
   bs.forEach(b=>{const y1=b.y*cX-b.z*sX,z1=b.y*sX+b.z*cX,x2=b.x*cY+z1*sY,z2=-b.x*sY+z1*cY;
@@ -429,7 +478,7 @@ function egg(n){found.add(n);$('#e'+n).classList.add('f');$('#cnt').textContent=
 function speak(t){say.textContent=t;say.classList.add('on');setTimeout(()=>say.classList.remove('on'),1800)}
 let wc=0,pc=0;
 $$('#wd span').forEach(s=>s.addEventListener('click',()=>{beep(300+wc*80);if(++wc>=5){wc=0;egg(1);document.body.classList.add('inv');speak('plot twist 🗿');setTimeout(()=>document.body.classList.remove('inv'),2500)}}));
-$('#photoBtn').addEventListener('click',()=>{beep(800);const p=$('#pic');speak(['halo 👋','ayoo mutualann🗿','sekali lagi…'][pc%3]);if(++pc>=3){pc=0;egg(2);p.classList.add('wink');setTimeout(()=>p.classList.remove('wink'),900)}});
+$('#photoBtn').addEventListener('click',()=>{beep(800);const p=$('#pic');p.classList.toggle('alt');speak(['halo 👋','ayoo mutualann🗿','sekali lagi…'][pc%3]);if(++pc>=3){pc=0;egg(2);p.classList.add('wink');setTimeout(()=>p.classList.remove('wink'),900)}});
 $('#star').onclick=e=>{egg(3);beep(900,.2);const r=e.target.getBoundingClientRect();
   for(let i=0;i<22;i++){const b=document.createElement('i');b.className='bit';if(i%3===0)b.style.background='var(--accent)';b.style.left=r.left+'px';b.style.top=r.top+'px';document.body.appendChild(b);
     const a=Math.random()*6.28,d=60+Math.random()*120;b.animate([{transform:'none',opacity:1},{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px) rotate(${Math.random()*360}deg)`,opacity:0}],{duration:900,easing:'ease-out'}).onfinish=()=>b.remove()}};
@@ -438,6 +487,38 @@ $('#eggBtn').onclick=()=>{beep(700);$('#eggs').classList.add('on')};
 $('#eclose').onclick=()=>$('#eggs').classList.remove('on');
 $('#eggs').addEventListener('click',e=>{if(e.target.id==='eggs')$('#eggs').classList.remove('on')});
 addEventListener('keydown',e=>{if(e.key==='Escape')$('#eggs').classList.remove('on')});
+/* ===== v4 FITUR TAMBAHAN ===== */
+/* tema gelap/terang (disimpan di localStorage kalau tersedia) */
+try{if(localStorage.getItem('wd-theme')==='light')document.documentElement.classList.add('light')}catch(e){}
+const toastEl=$('#toast');let tt;function toast(m){toastEl.textContent=m;toastEl.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>toastEl.classList.remove('on'),2200)}
+$('#theme').onclick=()=>{const l=document.documentElement.classList.toggle('light');beep(l?700:420);toast(l?'mode terang ☀':'mode gelap ☾');try{localStorage.setItem('wd-theme',l?'light':'dark')}catch(e){}};
+/* jam lokal pengunjung di pill sapaan */
+const clk=$('#clk');(function t(){clk.textContent=new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}).replace('.',':');setTimeout(t,30000)})();
+/* foto bisa di-drag, lalu memantul balik (spring) */
+const pic=$('#pic');
+pic.addEventListener('pointerdown',e=>{dr=true;sx=e.clientX-dx;sy=e.clientY-dy;moved=0});
+addEventListener('pointermove',e=>{if(!dr)return;const nx=e.clientX-sx,ny=e.clientY-sy;moved+=Math.abs(nx-dx)+Math.abs(ny-dy);dx=nx;dy=ny});
+addEventListener('pointerup',()=>{if(dr&&moved>8)beep(300,.15);dr=false});
+pic.addEventListener('click',e=>{if(moved>8){e.stopImmediatePropagation();e.preventDefault();moved=0}},true);
+/* percikan kecil di setiap klik */
+addEventListener('pointerdown',e=>{if(RM)return;for(let i=0;i<7;i++){const b=document.createElement('i');b.className='bit';b.style.cssText=`left:${e.clientX}px;top:${e.clientY}px;width:${3+Math.random()*4}px;height:${3+Math.random()*4}px;z-index:960;background:${i%2?'var(--accent-text)':'var(--text)'}`;document.body.appendChild(b);const a=Math.random()*6.28,d=24+Math.random()*40;b.animate([{transform:'none',opacity:1},{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px)`,opacity:0}],{duration:600,easing:'ease-out'}).onfinish=()=>b.remove()}});
+/* progress scroll */
+addEventListener('scroll',()=>{const h=document.documentElement;$('#prog').style.transform=`scaleX(${scrollY/((h.scrollHeight-innerHeight)||1)})`},{passive:true});
+/* tombol berita & footer */
+$('#nrefresh').onclick=()=>{beep(520);$('#news-container').innerHTML='<p><i class="fa-solid fa-spinner fa-spin"></i> Memuat ulang…</p>';fetchRealNews()};
+$('#top').onclick=()=>scrollTo({top:0,behavior:RM?'auto':'smooth'});$('#again').onclick=toSpace;
+/* menu cepat (Ctrl/Cmd+K atau tombol ⌕) */
+const pal=$('#pal'),pin=$('#pin'),pl=$('#pl');let sel2=0,vis2=[];
+const go=id=>{if($('#site').classList.contains('hide'))toSite(id);else document.getElementById(id).scrollIntoView()};
+const acts=[['About','tentang gua',()=>go('about')],['Skills','sphere 3D',()=>go('skills')],['Projects','Wilstream · Map · AI',()=>go('projects')],['Berita','RSS otomatis',()=>go('news')],['Sosial','TikTok · IG · WA · TG',()=>go('soc')],['Musik','putar / jeda',()=>mi.click()],['Ganti tema','gelap ↔ terang',()=>$('#theme').click()],['Easter eggs','lihat petunjuk',()=>$('#eggBtn').click()],['Ruang utama','balik ke landing',()=>{if($('#space').classList.contains('hide'))toSpace()}]];
+function draw(){const q=pin.value.trim().toLowerCase();vis2=acts.filter(a=>a[0].toLowerCase().includes(q));sel2=Math.min(sel2,Math.max(0,vis2.length-1));pl.innerHTML=vis2.map((a,i)=>`<li class="${i===sel2?'s':''}" data-i="${i}">${a[0]}<small>${a[1]}</small></li>`).join('')}
+function openPal(){pal.classList.add('on');pin.value='';sel2=0;draw();setTimeout(()=>pin.focus(),50)}
+function closePal(){pal.classList.remove('on')}
+function run(){const q=pin.value.trim().toLowerCase();if(q.includes('gila')){document.documentElement.classList.toggle('gila');egg(5);closePal();toast(document.documentElement.classList.contains('gila')?'mode gila: ON 🌀':'mode gila: OFF');beep(1000,.2);return}const a=vis2[sel2];if(a){closePal();beep(650);a[2]()}else toast('nggak ketemu… coba yang lain 👀')}
+$('#cmdf').onclick=openPal;pin.addEventListener('input',()=>{sel2=0;draw()});
+pl.addEventListener('click',e=>{const li=e.target.closest('li');if(li){sel2=+li.dataset.i;run()}});
+pal.addEventListener('click',e=>{if(e.target===pal)closePal()});
+addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();pal.classList.contains('on')?closePal():openPal();return}if(!pal.classList.contains('on'))return;if(e.key==='Escape')closePal();else if(e.key==='ArrowDown'){sel2=Math.min(sel2+1,vis2.length-1);draw();e.preventDefault()}else if(e.key==='ArrowUp'){sel2=Math.max(sel2-1,0);draw();e.preventDefault()}else if(e.key==='Enter')run()});
 })();
 </script>
 </body>
