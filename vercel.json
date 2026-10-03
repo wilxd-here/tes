@@ -9,6 +9,10 @@
       "destination": "https://wildev-ruby.vercel.app/:match*"
     },
     {
+      "source": "/api/:match*",
+      "destination": "https://wildev-ruby.vercel.app/api/:match*"
+    },
+    {
       "source": "/assets/:match*",
       "destination": "https://wildev-ruby.vercel.app/assets/:match*"
     },
