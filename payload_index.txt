@@ -454,7 +454,7 @@ html.mix .mus{border:2px solid #0a0a0a;border-radius:0 24px 0 24px}
       <p class="note">Welcome to portofolio, berisi tentang karya yang gua buat — Wil Developer Amatir.</p></div>
     <div class="aside rv"><figure class="ph"><i class="bp"></i><img src="pp.jpg" alt="Foto WillDev"><span class="bdg fill" style="bottom:8%;left:-14%">Frontend Dev</span><figcaption class="cap" aria-hidden="true">[ PORTRAIT / WILLDEV ] <b>[02]</b></figcaption></figure><div class="sticker"><h3>CATATAN KECIL</h3><p>Berikut bahasa pemrograman dan teknologi yang bisa gua pahami (sedikit😁). Ketuk ikon di bawah agar menampilkan nama teknologi.</p></div></div>
   </div>
-  <dl class="facts rv"><div><dt>role</dt><dd>Frontend Web Developer</dd></div><div><dt>status</dt><dd>Beginner Developer</dd></div><div><dt>stack</dt><dd>HTML5 · CSS3 · JavaScript +9</dd></div><div><dt>mutualan</dt><dd>TikTok / Instagram</dd></div></dl></section>
+  <dl class="facts rv"><div><dt>role</dt><dd>Frontend Web Developer</dd></div><div><dt>status</dt><dd>Beginner Developer</dd></div><div><dt>stack</dt><dd>HTML5 · CSS3 · JavaScript +9</dd></div><div><dt>Kerjaan</dt><dd>Rebahan/ganggur😁</dd></div></dl></section>
   <div class="sep" id="about2"></div>
   <div class="marq w" aria-hidden="true"><div><span>Frontend Web Developer</span><i>✦</i><span class="ol">WillDev</span><i>✦</i><span>Wil Developer Amatir</span><i>✦</i><span class="ol">Ayoo mutualann</span><i>✦</i><span>Frontend Web Developer</span><i>✦</i><span class="ol">WillDev</span><i>✦</i><span>Wil Developer Amatir</span><i>✦</i><span class="ol">Ayoo mutualann</span><i>✦</i></div></div>
 
@@ -469,7 +469,7 @@ html.mix .mus{border:2px solid #0a0a0a;border-radius:0 24px 0 24px}
     <div class="pj rv" id="pj">
       <div class="pnl open"><button aria-expanded="true"><div class="bar"><i></i><i></i><i></i><span class="url">/wilstream</span></div><h3>Wilstream</h3>
         <div class="body"><div class="ic fa-solid fa-video" aria-hidden="true"></div><p>Web menonton film movie</p><br><a href="/wilstream/" data-nav>Lihat Detail</a></div></button></div>
-      <div class="pnl"><button aria-expanded="false"><div class="bar"><i></i><i></i><i></i><span class="url">Xaerisoft map</span></div><h3>Live Tracking Map</h3>
+      <div class="pnl"><button aria-expanded="false"><div class="bar"><i></i><i></i><i></i><span class="url">/Xaerisoft map/</span></div><h3>Live Tracking Map</h3>
         <div class="body"><div class="ic fa-solid fa-earth-americas" aria-hidden="true"></div><p>menggunakan apikey google earth, mendetiksi cuaca, bencana dan trafick pesawat</p><br><a href="/Xaerimaps/">Lihat Detail →</a></div></button></div>
       <div class="pnl"><button aria-expanded="false"><div class="bar"><i></i><i></i><i></i><span class="url">/Xaerisoft AI</span></div><h3>Xaerisoft AI</h3>
         <div class="body"><div class="ic fa-solid fa-robot" aria-hidden="true"></div><p>Chatbot xaerisoft ai </p><br><a href="/XaerisoftAI/" data-nav>Lihat Detail →</a></div></button></div>
