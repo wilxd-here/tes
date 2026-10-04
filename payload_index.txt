@@ -470,7 +470,7 @@ html.mix .mus{border:2px solid #0a0a0a;border-radius:0 24px 0 24px}
       <div class="pnl open"><button aria-expanded="true"><div class="bar"><i></i><i></i><i></i><span class="url">/wilstream</span></div><h3>Wilstream</h3>
         <div class="body"><div class="ic fa-solid fa-video" aria-hidden="true"></div><p>Web menonton film movie</p><br><a href="/wilstream/" data-nav>Lihat Detail</a></div></button></div>
       <div class="pnl"><button aria-expanded="false"><div class="bar"><i></i><i></i><i></i><span class="url">/Xaerisoft map/</span></div><h3>Live Tracking Map</h3>
-        <div class="body"><div class="ic fa-solid fa-earth-americas" aria-hidden="true"></div><p>menggunakan apikey google earth, mendetiksi cuaca, bencana dan trafick pesawat</p><br><a href="/Xaerimaps/">Lihat Detail →</a></div></button></div>
+        <div class="body"><div class="ic fa-solid fa-earth-americas" aria-hidden="true"></div><p>menggunakan apikey google earth, mendetiksi cuaca, bencana dan trafick pesawat</p><br><a href="/xaerimaps/">Lihat Detail →</a></div></button></div>
       <div class="pnl"><button aria-expanded="false"><div class="bar"><i></i><i></i><i></i><span class="url">/Xaerisoft AI</span></div><h3>Xaerisoft AI</h3>
         <div class="body"><div class="ic fa-solid fa-robot" aria-hidden="true"></div><p>Chatbot xaerisoft ai </p><br><a href="/XaerisoftAI/" data-nav>Lihat Detail →</a></div></button></div>
     </div>
