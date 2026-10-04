@@ -41,15 +41,15 @@
       "destination": "https://jjdkai.vercel.app/:path*"
     },
     {
-      "source": "/Xaerimaps",
+      "source": "/xaerimaps",
       "destination": "https://xaerisoftmaps.vercel.app/"
     },
     {
-      "source": "/Xaerimaps/",
+      "source": "/xaerimaps/",
       "destination": "https://xaerisoftmaps.vercel.app/"
     },
     {
-      "source": "/Xaerimaps/:path*",
+      "source": "/xaerimaps/:path*",
       "destination": "https://xaerisoftmaps.vercel.app/*"
     },
     {
