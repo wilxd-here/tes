@@ -5,10 +5,6 @@
       "destination": "https://xaerisoftmaps.vercel.app/"
     },
     {
-      "source": "/xaerimaps/",
-      "destination": "https://xaerisoftmaps.vercel.app/"
-    },
-    {
       "source": "/xaerimaps/:path*",
       "destination": "https://xaerisoftmaps.vercel.app/:path*"
     },
@@ -33,6 +29,14 @@
     },
     {
       "source": "/XaerisoftAI/:path*",
+      "destination": "https://jjdkai.vercel.app/:path*"
+    },
+    {
+      "source": "/xaerisoftai",
+      "destination": "https://jjdkai.vercel.app/"
+    },
+    {
+      "source": "/xaerisoftai/:path*",
       "destination": "https://jjdkai.vercel.app/:path*"
     }
   ]
