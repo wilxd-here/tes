@@ -29,6 +29,30 @@
       "destination": "https://jjdkai.vercel.app/:path*"
     },
     {
+      "source": "/xaerisoftai",
+      "destination": "https://jjdkai.vercel.app/"
+    },
+    {
+      "source": "/xaerisoftai/",
+      "destination": "https://jjdkai.vercel.app/"
+    },
+    {
+      "source": "/xaerisoftai/:path*",
+      "destination": "https://jjdkai.vercel.app/:path*"
+    },
+    {
+      "source": "/Xaerimaps",
+      "destination": "https://jjdkai.vercel.app/"
+    },
+    {
+      "source": "/Xaerimaps/",
+      "destination": "https://jjdkai.vercel.app/"
+    },
+    {
+      "source": "/Xaerimaps/:path*",
+      "destination": "https://jjdkai.vercel.app/:path*"
+    },
+    {
       "source": "/xaerimaps",
       "destination": "https://jjdkai.vercel.app/"
     },
