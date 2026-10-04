@@ -27,6 +27,18 @@
     {
       "source": "/XaerisoftAI/:path*",
       "destination": "https://jjdkai.vercel.app/:path*"
+    },
+    {
+      "source": "/xaerimaps",
+      "destination": "https://jjdkai.vercel.app/"
+    },
+    {
+      "source": "/xaerimaps/",
+      "destination": "https://jjdkai.vercel.app/"
+    },
+    {
+      "source": "/xaerimaps/:path*",
+      "destination": "https://jjdkai.vercel.app/:path*"
     }
   ]
 }
