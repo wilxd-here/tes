@@ -42,27 +42,27 @@
     },
     {
       "source": "/Xaerimaps",
-      "destination": "https://jjdkai.vercel.app/"
+      "destination": "https://xaerisoftmaps.vercel.app/"
     },
     {
       "source": "/Xaerimaps/",
-      "destination": "https://jjdkai.vercel.app/"
+      "destination": "https://xaerisoftmaps.vercel.app/"
     },
     {
       "source": "/Xaerimaps/:path*",
-      "destination": "https://jjdkai.vercel.app/:path*"
+      "destination": "https://xaerisoftmaps.vercel.app/*"
     },
     {
       "source": "/xaerimaps",
-      "destination": "https://jjdkai.vercel.app/"
+      "destination": "https://xaerisoftmaps.vercel.app//"
     },
     {
       "source": "/xaerimaps/",
-      "destination": "https://jjdkai.vercel.app/"
+      "destination": "https://xaerisoftmaps.vercel.app/"
     },
     {
       "source": "/xaerimaps/:path*",
-      "destination": "https://jjdkai.vercel.app/:path*"
+      "destination": "https://xaerisoftmaps.vercel.app/*"
     }
   ]
 }
