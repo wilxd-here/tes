@@ -5,39 +5,36 @@
       "destination": "https://xaerisoftmaps.vercel.app/"
     },
     {
-      "source": "/xaerimaps/:path*",
-      "destination": "https://xaerisoftmaps.vercel.app/:path*"
+      "source": "/xaerimaps/(.*)",
+      "destination": "https://xaerisoftmaps.vercel.app/$1"
     },
-
     {
       "source": "/wilstream",
       "destination": "https://wildev-ruby.vercel.app/"
     },
     {
-      "source": "/wilstream/:path*",
-      "destination": "https://wildev-ruby.vercel.app/:path*"
+      "source": "/wilstream/(.*)",
+      "destination": "https://wildev-ruby.vercel.app/$1"
     },
-
     {
-      "source": "/api/:path*",
-      "destination": "https://wildev-ruby.vercel.app/api/:path*"
+      "source": "/api/(.*)",
+      "destination": "https://wildev-ruby.vercel.app/api/$1"
     },
-
     {
       "source": "/XaerisoftAI",
       "destination": "https://jjdkai.vercel.app/"
     },
     {
-      "source": "/XaerisoftAI/:path*",
-      "destination": "https://jjdkai.vercel.app/:path*"
+      "source": "/XaerisoftAI/(.*)",
+      "destination": "https://jjdkai.vercel.app/$1"
     },
     {
       "source": "/xaerisoftai",
       "destination": "https://jjdkai.vercel.app/"
     },
     {
-      "source": "/xaerisoftai/:path*",
-      "destination": "https://jjdkai.vercel.app/:path*"
+      "source": "/xaerisoftai/(.*)",
+      "destination": "https://jjdkai.vercel.app/$1"
     }
   ]
 }
