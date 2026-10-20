@@ -302,7 +302,7 @@ body.insite{padding-bottom:72px}}
 #pl li.ct{padding:8px 12px 4px;font:400 10px var(--m);letter-spacing:.2em;color:var(--muted);cursor:default;background:none}
 #pl li{align-items:center;justify-content:flex-start;transition:background .15s}
 #pl li .pi{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:13px;background:var(--accent-soft);flex:none}#pl li.s .pi{background:rgba(255,255,255,.2)}
-#pl li .pt{flex:1;min-width:0}#pl li .pt small{display:block}
+#pl li .ptx{flex:1;min-width:0}#pl li .ptx small{display:block}
 #pl li kbd{font:400 11px var(--m);opacity:0;border:1px solid currentColor;border-radius:6px;padding:1px 6px}#pl li.s kbd{opacity:.8}
 #pl li em{font:400 10px var(--m);font-style:normal;opacity:.8}
 .phint{display:none;padding:8px 12px 2px;font:400 10px var(--m);color:var(--muted);letter-spacing:.08em}@media(pointer:fine){.phint{display:block}}
@@ -396,7 +396,7 @@ footer{position:relative}
 .big span:nth-of-type(4){animation-duration:6s;animation-delay:-.5s}.big span:nth-of-type(5){animation-duration:4.8s;animation-delay:-3s}
 .big span:nth-of-type(6){animation-duration:5.6s;animation-delay:-1.6s}.big span:nth-of-type(7){animation-duration:4.4s;animation-delay:-2.4s}
 #pts,#orbx{position:absolute;inset:0;pointer-events:none;will-change:transform}
-.pt{position:absolute;border-radius:50%;background:var(--accent-text);opacity:0;animation:drf var(--t,12s) linear infinite;animation-delay:var(--d,0s)}
+#pts .pt{position:absolute;border-radius:50%;background:var(--accent-text);opacity:0;animation:drf var(--t,12s) linear infinite;animation-delay:var(--d,0s)}
 @keyframes drf{0%{transform:translate3d(0,0,0);opacity:0}15%{opacity:.7}85%{opacity:.4}100%{transform:translate3d(var(--x,30px),-170px,0);opacity:0}}
 .ox{position:absolute;left:50%;top:50%;width:min(64vw,680px);aspect-ratio:2.1;margin:calc(min(64vw,680px)/-4.2) 0 0 calc(min(64vw,680px)/-2);border:1px dotted var(--border);border-radius:50%;animation:spin 70s linear infinite reverse}
 .ox.b{width:min(46vw,480px);aspect-ratio:1.5;margin:calc(min(46vw,480px)/-3) 0 0 calc(min(46vw,480px)/-2);animation:spin 48s linear infinite}
@@ -710,12 +710,13 @@ body.glx :is(#space .big,h2.t,.logo,.pr-t){animation:gls .2s steps(1) 1}
   </section>
 
   <div class="marq acc rev" aria-hidden="true"><div><span>Frontend Web Developer</span><i>✦</i><span class=ol>WillDev</span><i>✦</i><span>Wil Developer Amatir</span><i>✦</i><span class=ol>Ayoo mutualann</span><i>✦</i><span>Frontend Web Developer</span><i>✦</i><span class=ol>WillDev</span><i>✦</i><span>Wil Developer Amatir</span><i>✦</i><span class=ol>Ayoo mutualann</span><i>✦</i></div></div>
-  <section id="news"><p class="kicker rv">diambil otomatis dari RSS</p><h2 class="t rv">Berita<br><span class="ol">Hari Iniii👀</span></h2>
+  <section id="news"><p class="kicker rv"> diambil otomatis dari RSS</p><h2 class="t rv">Berita<br><span class="ol">Hari Iniii👀</span></h2>
     <button class="pill mag" id="nrefresh">↻ muat ulang</button>
     <div class="nws" id="news-container"><p><i class="fa-solid fa-spinner fa-spin"></i> Memuat berita terbaru dari media resmi...</p></div>
+    <p id="nstat" aria-live="polite" style="margin-top:14px;color:var(--mute);font:400 12px var(--m)"></p>
   </section>
 
-  <footer><p class="kicker">Ayoo mutualan😁👀</p>
+  <footer><p class="kicker">Marii mutualan😁👀</p>
     <div class="soc" id="soc">
       <a href="https://tiktok.com/@xaerisoft" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
       <a href="https://www.instagram.com/bknwil?stkn=aXhyZW0ybjc5NWU3" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -818,16 +819,50 @@ $$('[data-nav]').forEach(a=>a.addEventListener('click',e=>bukaPayload(e,a.href))
 const bg=$('#bg-music'),mi=$('#music-icon');
 mi.onclick=()=>{const m=$('#mus');if(bg.paused){bg.play().catch(()=>{});mi.className="fa-solid fa-volume-high";m.classList.add('on')}else{bg.pause();mi.className="fa-solid fa-volume-xmark";m.classList.remove('on')}};
 
-/* BERITA OTOMATIS (RSS → JSON, sama seperti aslinya) */
+/* BERITA POLITIK OTOMATIS: gabung beberapa RSS, urut terbaru, tampil 5 */
 const FB="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=600&h=400&q=80";
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-async function fetchRealNews(){const box=$('#news-container');
-  try{const d=await(await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.antaranews.com/rss/politik.xml")).json();
-    if(d.status==="ok"&&d.items.length){box.innerHTML="";d.items.slice(0,3).forEach(it=>{
-      const img=it.thumbnail||(it.enclosure&&it.enclosure.link)||FB,dt=new Date(it.pubDate).toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"}),ds=it.description.replace(/<[^>]*>?/gm,'').substring(0,120)+"...";
-      box.insertAdjacentHTML('beforeend',`<a class="nrow" href="${esc(it.link)}" target="_blank" rel="noopener noreferrer"><img src="${esc(img)}" alt="${esc(it.title)}" onerror="this.src='${FB}'"><div><small><i class="fa-regular fa-calendar"></i> ${dt}</small><h3>${esc(it.title)}</h3><p>${esc(ds)}</p><small>Baca di Sumber Resmi <i class="fa-solid fa-arrow-up-right-from-square"></i></small></div></a>`)})}
-    else box.innerHTML="<p>Gagal memuat berita terkini.</p>"}catch(e){box.innerHTML="<p>Gagal terhubung ke server berita.</p>"}}
-fetchRealNews();
+const NEWS_N=5,NEWS_KEY='wd-news-v2',NEWS_EVERY=30*60*1000;
+/* f:1 = feed umum, hanya ambil artikel yang berbau politik */
+const NEWS_SRC=[
+  {n:'ANTARA',u:'https://www.antaranews.com/rss/politik.xml'},
+  {n:'ANTARA',u:'https://www.antaranews.com/rss/terkini.xml',f:1},
+  {n:'CNN Indonesia',u:'https://www.cnnindonesia.com/nasional/rss',f:1}
+];
+const POL=/\b(politik\w*|politisi|presiden|prabowo|gibran|wapres|istana|dpr|dprd|dpd|mpr|menteri|kementerian|kabinet|partai|pemilu|pilkada|pilpres|kpu|bawaslu|mahkamah|mk|kpk|ombudsman|gubernur|bupati|wali ?kota|parlemen|koalisi|legislatif|fraksi|demokrasi|ruu|dewan)\b/i;
+const toDate=v=>{if(!v)return null;const t=String(v).trim(),d=/^\d{4}-\d\d-\d\d \d\d:\d\d:\d\d$/.test(t)?new Date(t.replace(' ','T')+'Z'):new Date(t);return isNaN(d)?null:d};
+const tmo=ms=>{const c=new AbortController();setTimeout(()=>c.abort(),ms);return c.signal};
+/* jalur 1: rss2json (hasil bisa di-cache lama di sisi mereka) */
+const viaJson=async s=>{const d=await(await fetch('https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(s.u),{signal:tmo(9000)})).json();if(d.status!=='ok')throw 0;
+  return d.items.map(it=>({title:it.title,link:it.link,date:toDate(it.pubDate),desc:it.description||'',img:it.thumbnail||(it.enclosure&&it.enclosure.link)||'',src:s.n,f:s.f}))};
+/* jalur 2: ambil XML langsung lewat proxy CORS, supaya tetap segar kalau jalur 1 basi */
+const viaXml=async s=>{const x=new DOMParser().parseFromString(await(await fetch('https://api.allorigins.win/raw?url='+encodeURIComponent(s.u),{signal:tmo(9000)})).text(),'text/xml'),its=[...x.getElementsByTagName('item')];if(!its.length)throw 0;
+  return its.map(it=>{const g=t=>{const e=it.getElementsByTagName(t)[0];return e?e.textContent.trim():''},m=it.getElementsByTagNameNS('*','content')[0]||it.getElementsByTagNameNS('*','thumbnail')[0],en=it.getElementsByTagName('enclosure')[0],ds=g('description');
+    return{title:g('title'),link:g('link'),date:toDate(g('pubDate')),desc:ds,img:(en&&en.getAttribute('url'))||(m&&m.getAttribute('url'))||(ds.match(/<img[^>]+src=["']([^"']+)/i)||[])[1]||'',src:s.n,f:s.f}})};
+async function loadNews(){
+  const all=(await Promise.all(NEWS_SRC.flatMap(s=>[viaJson(s).catch(()=>[]),viaXml(s).catch(()=>[])]))).flat(),now=Date.now(),seen=new Set(),out=[];
+  all.filter(a=>a.title&&/^https?:/i.test(a.link)&&a.date&&a.date.getTime()<=now+864e5&&(!a.f||POL.test(a.title+' '+a.desc)))
+     .sort((a,b)=>b.date-a.date)
+     .forEach(a=>{const k=a.link.split('?')[0].replace(/\/$/,'').toLowerCase(),t=a.title.toLowerCase().replace(/\W+/g,' ');if(seen.has(k)||seen.has(t))return;seen.add(k);seen.add(t);out.push(a)});
+  return out.slice(0,NEWS_N)}
+const fmtD=d=>{const t=new Date(),y=new Date(t.getFullYear(),t.getMonth(),t.getDate()-1),same=(a,b)=>a.toDateString()===b.toDateString(),hm=d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}).replace(':','.');
+  return same(d,t)?'Hari ini, '+hm:same(d,y)?'Kemarin, '+hm:d.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})};
+const saveNews=l=>{try{localStorage.setItem(NEWS_KEY,JSON.stringify({t:Date.now(),items:l.map(a=>({title:a.title,link:a.link,date:+a.date,desc:String(a.desc).slice(0,300),img:a.img,src:a.src}))}))}catch(e){}};
+const readNews=()=>{try{const c=JSON.parse(localStorage.getItem(NEWS_KEY));return c&&c.items&&c.items.length?c:null}catch(e){return null}};
+function renderNews(list){$('#news-container').innerHTML=list.map(a=>{const ds=String(a.desc).replace(/<[^>]*>?/gm,'').trim().substring(0,120)+'...';
+  return`<a class="nrow" href="${esc(a.link)}" target="_blank" rel="noopener noreferrer"><img src="${esc(a.img||FB)}" alt="${esc(a.title)}" loading="lazy" onerror="this.onerror=null;this.src='${esc(FB)}'"><div><small><i class="fa-regular fa-calendar"></i> ${fmtD(new Date(a.date))}</small><h3>${esc(a.title)}</h3><p>${esc(ds)}</p><small>Baca di Sumber Resmi (${esc(a.src)}) <i class="fa-solid fa-arrow-up-right-from-square"></i></small></div></a>`}).join('')}
+let newsRun=0,newsAt=0;
+async function fetchRealNews(first){const run=++newsRun,st=$('#nstat'),stamp=t=>new Date(t).toLocaleString('id-ID',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+  if(first===true){const c=readNews();if(c){renderNews(c.items);st.textContent='Menampilkan berita tersimpan, memperbarui…'}}
+  let list=[];try{list=await loadNews()}catch(e){}
+  if(run!==newsRun)return;
+  if(list.length){newsAt=Date.now();renderNews(list);saveNews(list);st.textContent='Diperbarui '+stamp(newsAt)+' · '+[...new Set(list.map(a=>a.src))].join(', ');return}
+  const c=readNews();
+  if(c){renderNews(c.items);st.textContent='Gagal memperbarui. Menampilkan berita tersimpan ('+stamp(c.t)+').'}
+  else{$('#news-container').innerHTML='<p>Gagal memuat berita terkini. Coba tekan “muat ulang”.</p>';st.textContent=''}}
+fetchRealNews(true);
+setInterval(()=>fetchRealNews(),NEWS_EVERY);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-newsAt>NEWS_EVERY/2)fetchRealNews()});
 
 /* EASTER EGGS */
 const found=new Set(),say=$('#say');
@@ -907,7 +942,7 @@ const A=(n,d,cat,ic,kw,f,on)=>({n,d,cat,ic,kw:(n+' '+d+' '+kw).toLowerCase(),f,o
 const acts=[A('About','tentang gua','NAVIGATION','fa-user','tentang',()=>go('about')),A('Skills','teknologi · sphere 3D','NAVIGATION','fa-cube','teknologi',()=>go('skills')),A('Projects','karya gua · Wilstream · Map · AI','NAVIGATION','fa-layer-group','proyek karya',()=>go('projects')),A('Berita','update · RSS otomatis','NAVIGATION','fa-newspaper','news',()=>go('news')),A('Sosial','temui gua · TikTok · IG · WA · TG','NAVIGATION','fa-share-nodes','social mutualan',()=>go('soc')),A('Ruang Utama','balik ke landing','NAVIGATION','fa-house','landing home',()=>{if($('#space').classList.contains('hide'))toSpace()}),
 A('Dark Mode','gelap · aksen violet','THEME','fa-moon','dark gelap',()=>setTheme('dark'),'dark'),A('Light Mode','terang · kertas hangat','THEME','fa-sun','light terang',()=>setTheme('light'),'light'),A('Mode Mix','monochrome · editorial hitam-putih','THEME','fa-circle-half-stroke','mix monochrome mode mix gila hitam putih',()=>setTheme('mix'),'mix'),A('Ganti Tema','dark → light → mix','THEME','fa-rotate','theme tema',cycleTheme),
 A('Easter Eggs','lihat petunjuk','INTERACTION','fa-egg','egg rahasia',()=>$('#eggBtn').click()),A('Musik','background sound · putar / jeda','MEDIA','fa-music','music lagu sound',()=>mi.click())];
-function draw(){const q=pin.value.trim().toLowerCase();vis2=acts.filter(a=>a.kw.includes(q));sel2=Math.min(sel2,Math.max(0,vis2.length-1));let c='';pl.innerHTML=vis2.map((a,i)=>{const h=a.cat!==c?`<li class="ct" aria-hidden="true">${a.cat}</li>`:'';c=a.cat;return h+`<li class="${i===sel2?'s':''}" data-i="${i}"><span class="pi"><i class="fa-solid ${a.ic}"></i></span><span class="pt"><b>${a.n}</b><small>${a.d}</small></span>${a.on&&a.on===theme?'<em>● aktif</em>':''}<kbd>↵</kbd></li>`}).join('');const s=pl.querySelector('.s');if(s)s.scrollIntoView({block:'nearest'})}
+function draw(){const q=pin.value.trim().toLowerCase();vis2=acts.filter(a=>a.kw.includes(q));sel2=Math.min(sel2,Math.max(0,vis2.length-1));let c='';pl.innerHTML=vis2.map((a,i)=>{const h=a.cat!==c?`<li class="ct" aria-hidden="true">${a.cat}</li>`:'';c=a.cat;return h+`<li class="${i===sel2?'s':''}" data-i="${i}"><span class="pi"><i class="fa-solid ${a.ic}"></i></span><span class="ptx"><b>${a.n}</b><small>${a.d}</small></span>${a.on&&a.on===theme?'<em>● aktif</em>':''}<kbd>↵</kbd></li>`}).join('');const s=pl.querySelector('.s');if(s)s.scrollIntoView({block:'nearest'})}
 function openPal(){pal.classList.add('on');pin.value='';sel2=0;draw();setTimeout(()=>pin.focus(),50)}
 function closePal(){pal.classList.remove('on')}
 function run(){const a=vis2[sel2];if(a){closePal();beep(650);a.f()}else toast('nggak ketemu… coba yang lain 👀')}
@@ -933,7 +968,7 @@ function finish(){if(fin)return;fin=1;ld.classList.add('done');
   l.animate([{opacity:1,transform:'scaleX(.04)'},{opacity:1,transform:'scaleX(1)',offset:.45},{opacity:0,transform:'scaleX(1)'}],{duration:900,easing:'cubic-bezier(.7,0,.2,1)'}).onfinish=()=>l.remove();
   spc.classList.add('lch');setTimeout(()=>spc.classList.remove('lch'),1700)}
 if(RM){finish()}else{
-  const st=document.createElement('div'),pc=document.createElement('div'),em=ld.querySelector('em'),ST=root.classList.contains('light')?['Loading profile…','Loading projects…','Loading photos…','Loading music…','Loading news…','Loading animations…']:['INITIALIZING SYSTEM','LOADING ASSETS','BUILDING EXPERIENCE','SYSTEM READY'];
+  const st=document.createElement('div'),pc=document.createElement('div'),em=ld.querySelector('em'),ST=root.classList.contains('light')?['Loading profile…','Loading projects…','Loading photos…','Loading music…','Loading news…','Loading animations…']:['Loading Projects','Loading Asets','Loading Music','Waiting...'];
   st.className='st';pc.className='pc2';ld.append(st,pc);
   const T0=performance.now(),DUR=1900,gl=[.22,.55,.8];let loaded=document.readyState==='complete',si=-1,gi=0;
   addEventListener('load',()=>loaded=true);
