@@ -644,7 +644,7 @@ body.glx :is(#space .big,h2.t,.logo,.pr-t){animation:gls .2s steps(1) 1}
   </div>
   <div class="layer" data-d="55" id="orbs">
     <div class="orb o1"><button data-go="about" data-f="440">SKILLS</button></div>
-    <div class="orb o2"><button data-go="projects" data-f="520">Proyek mangkrak🙈</button></div>
+    <div class="orb o2"><button data-go="projects" data-f="520">HTML5</button></div>
     <div class="orb o3"><button data-go="about2" data-f="600">ABOUT Me</button></div>
     <div class="orb o4"><button id="eggBtn" data-f="700">EASTER<br>EGGS<small>(Ada easter egg, cari)</small></button></div>
   </div>
@@ -658,20 +658,20 @@ body.glx :is(#space .big,h2.t,.logo,.pr-t){animation:gls .2s steps(1) 1}
       <a class="l nv" href="#about" data-s="about" data-d="tentang gua"><b>01</b>About</a><a class="l nv" href="#skills" data-s="skills" data-d="teknologi"><b>02</b>Skills</a><a class="l nv" href="#projects" data-s="projects" data-d="karya gua"><b>03</b>Projects</a><a class="l nv" href="#news" data-s="news" data-d="update"><b>04</b>Berita</a><a class="l nv" href="#soc" data-s="soc" data-d="temui gua"><b>05</b>Sosial</a><button class="nv mu" data-d="background sound" aria-label="Putar atau jeda musik"><b>06</b>Musik<i class="dt"></i></button><span class="pc" id="npc" aria-hidden="true">0%</span>
     </nav></header>
   <button id="mnav" aria-label="Buka menu navigasi"><span id="mnum">01</span></button>
-  <div id="msheet" role="menu" aria-label="Navigasi"><a href="#about" data-s="about"><b>01</b>About<small>tentang gua</small></a><a href="#skills" data-s="skills"><b>02</b>Skills<small>teknologi</small></a><a href="#projects" data-s="projects"><b>03</b>Projects<small>karya gua</small></a><a href="#news" data-s="news"><b>04</b>Berita<small>update</small></a><a href="#soc" data-s="soc"><b>05</b>Sosial<small>temui gua</small></a><button class="mu"><b>06</b>Musik<small>background sound</small></button></div>
+  <div id="msheet" role="menu" aria-label="Navigasi"><a href="#about" data-s="about"><b>01</b>About<small></small></a><a href="#skills" data-s="skills"><b>02</b>Skills<small>teknologi</small></a><a href="#projects" data-s="projects"><b>03</b>Projects<small>karya gua</small></a><a href="#news" data-s="news"><b>04</b>Berita<small>update</small></a><a href="#soc" data-s="soc"><b>05</b>Sosial<small>temui gua</small></a><button class="mu"><b>06</b>Musik<small>background sound</small></button></div>
   <div id="mus" class="mus"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><button id="cmdf" class="sb" aria-label="Menu cepat (Ctrl+K)">⌕</button><button id="theme" class="sb tctl" aria-haspopup="true" aria-label="Ganti tema"><span class="ic i-d"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z" fill="currentColor"/></svg></span><span class="ic i-l"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="ic i-m"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></span><i class="tk"></i></button><div id="tpanel" role="radiogroup" aria-label="Pilih tema"><button role="radio" data-t="dark"><i class="sw sw-d"></i>DARK<em>●</em></button><button role="radio" data-t="light"><i class="sw sw-l"></i>LIGHT<em>●</em></button><button role="radio" data-t="mix"><i class="sw sw-m"></i>MIX<em>●</em></button></div><button id="music-icon" class="fa-solid fa-volume-xmark" title="Putar Musik" aria-label="Putar atau hentikan musik"></button></div>
 
   <section id="about"><div class="wrap">
-    <div class="rv"><p class="kicker">halo, ini Web gajelas😹✌️</p>
+    <div class="rv"><p class="kicker">WELCOME</p>
       <h2 class="t out">About<span class="pu">.</span></h2>
-      <p class="lead">Wil, developer <i>amatir</i> — Wil suka naspad😋</p>
+      <p class="lead">Wil, developer <i>amatir</i> — </p>
       <span id="typing" aria-live="off">Frontend Web Developer</span>
-      <p class="note">Welcome to portofolio, berisi tentang karya yang gua buat — Wil Developer Amatir.</p></div>
+      <p class="note"> mengconvert figma menjadi html5, berisi tentang dan Beberapa proyek HTML5 yang gua buat,</p></div>
     <div class="aside rv"><figure class="ph"><i class="bp"></i><img src="pp.jpg" alt="Foto WillDev"><span class="bdg fill" style="bottom:8%;left:-14%">Frontend Dev</span><figcaption class="cap" aria-hidden="true">[ PORTRAIT / WILLDEV ] <b>[02]</b></figcaption></figure><div class="sticker"><h3>CATATAN KECIL</h3><p>Berikut bahasa pemrograman dan teknologi yang bisa gua pahami (sedikit😁). Ketuk ikon di bawah agar menampilkan nama teknologi.</p></div></div>
   </div>
-  <dl class="facts rv"><div><dt>role</dt><dd>Frontend Web Developer</dd></div><div><dt>status</dt><dd>Beginner Developer</dd></div><div><dt>stack</dt><dd>HTML5 · CSS3 · JavaScript +9</dd></div><div><dt>Kerjaan</dt><dd>Rebahan/ganggur😁</dd></div></dl></section>
+  <dl class="facts rv"><div><dt>Peran</dt><dd>HTML codex</dd></div##><div><dt>status</dt><dd>Beginner Developer</dd></div><div><dt>stack</dt><dd>HTML5 · CSS3 · JavaScript +9</dd></div><div><dt>Kerjaan</dt><dd>Pelajar</dd></div></dl></section>
   <div class="sep" id="about2"></div>
-  <div class="marq w" aria-hidden="true"><div><span>Frontend Web Developer</span><i>✦</i><span class="ol">WillDev</span><i>✦</i><span>Wil Developer Amatir</span><i>✦</i><span class="ol">Ayoo mutualann</span><i>✦</i><span>Frontend Web Developer</span><i>✦</i><span class="ol">WillDev</span><i>✦</i><span>Wil Developer Amatir</span><i>✦</i><span class="ol">Ayoo mutualann</span><i>✦</i></div></div>
+  <div class="marq w" aria-hidden="true"><div><span>Frontend Web Developer</span><i>✦</i><span class="ol">WillDev</span><i>✦</i><span>Wil Developer Amatir</span><i>✦</i><span class="ol"></span><i>✦</i><span>Frontend Web Developer</span><i>✦</i><span class="ol">WillDev</span><i>✦</i><span>Wil Developer Amatir</span><i>✦</i><span class="ol">Ayoo mutualann</span><i>✦</i></div></div>
 
   <section id="skills" style="padding-bottom:0"><p class="kicker rv">yang bisa gua pakai</p><h2 class="t rv"><span class="ol">Skills</span><span class="pu">.</span></h2>
     <div class="arena rv" id="arena" aria-label="Bola 3D teknologi, gerakkan kursor untuk memutar">
