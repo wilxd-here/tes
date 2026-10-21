@@ -832,50 +832,23 @@ const NEWS_SRC=[
 const POL=/\b(politik\w*|politisi|presiden|prabowo|gibran|wapres|istana|dpr|dprd|dpd|mpr|menteri|kementerian|kabinet|partai|pemilu|pilkada|pilpres|kpu|bawaslu|mahkamah|mk|kpk|ombudsman|gubernur|bupati|wali ?kota|parlemen|koalisi|legislatif|fraksi|demokrasi|ruu|dewan)\b/i;
 const toDate=v=>{if(!v)return null;const t=String(v).trim(),d=/^\d{4}-\d\d-\d\d \d\d:\d\d:\d\d$/.test(t)?new Date(t.replace(' ','T')+'Z'):new Date(t);return isNaN(d)?null:d};
 const tmo=ms=>{const c=new AbortController();setTimeout(()=>c.abort(),ms);return c.signal};
-/* RSS loader: beberapa jalur cadangan karena proxy publik kadang down / dibatasi */
-const viaJson=async s=>{
-  const r=await fetch('https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(s.u),{signal:tmo(12000),cache:'no-store'});
-  if(!r.ok)throw Error('rss2json HTTP '+r.status);
-  const d=await r.json();if(d.status!=='ok'||!Array.isArray(d.items))throw Error('RSS tidak tersedia');
-  return d.items.map(it=>({title:it.title,link:it.link,date:toDate(it.pubDate),desc:it.description||'',img:it.thumbnail||(it.enclosure&&it.enclosure.link)||'',src:s.n,f:s.f}));
-};
-const parseXml= (xml,s)=>{
-  const x=new DOMParser().parseFromString(xml,'text/xml');
-  if(x.querySelector('parsererror'))throw Error('XML tidak valid');
-  const its=[...x.getElementsByTagName('item')];if(!its.length)throw Error('RSS kosong');
-  return its.map(it=>{
-    const g=t=>{const e=it.getElementsByTagName(t)[0];return e?e.textContent.trim():''};
-    const m=it.getElementsByTagNameNS('*','content')[0]||it.getElementsByTagNameNS('*','thumbnail')[0];
-    const en=it.getElementsByTagName('enclosure')[0],ds=g('description');
-    return {title:g('title'),link:g('link'),date:toDate(g('pubDate')||g('date')),desc:ds,img:(en&&en.getAttribute('url'))||(m&&m.getAttribute('url'))||(ds.match(/<img[^>]+src=["']([^"']+)/i)||[])[1]||'',src:s.n,f:s.f};
-  });
-};
-const viaXml=async s=>{
-  const targets=[
-    'https://api.allorigins.win/raw?url='+encodeURIComponent(s.u),
-    'https://corsproxy.io/?url='+encodeURIComponent(s.u)
-  ];
-  for(const url of targets){
-    try{
-      const r=await fetch(url,{signal:tmo(12000),cache:'no-store'});
-      if(!r.ok)continue;
-      const xml=await r.text();
-      if(xml && /<item[\\s>]/i.test(xml))return parseXml(xml,s);
-    }catch(e){}
-  }
-  throw Error('Semua proxy RSS gagal');
-};
+/* jalur 1: rss2json (hasil bisa di-cache lama di sisi mereka) */
+const viaJson=async s=>{const d=await(await fetch('https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(s.u),{signal:tmo(9000)})).json();if(d.status!=='ok')throw 0;
+  return d.items.map(it=>({title:it.title,link:it.link,date:toDate(it.pubDate),desc:it.description||'',img:it.thumbnail||(it.enclosure&&it.enclosure.link)||'',src:s.n,f:s.f}))};
+/* jalur 2: ambil XML langsung lewat proxy CORS, supaya tetap segar kalau jalur 1 basi */
+const viaXml=async s=>{const x=new DOMParser().parseFromString(await(await fetch('https://api.allorigins.win/raw?url='+encodeURIComponent(s.u),{signal:tmo(9000)})).text(),'text/xml'),its=[...x.getElementsByTagName('item')];if(!its.length)throw 0;
+  return its.map(it=>{const g=t=>{const e=it.getElementsByTagName(t)[0];return e?e.textContent.trim():''},m=it.getElementsByTagNameNS('*','content')[0]||it.getElementsByTagNameNS('*','thumbnail')[0],en=it.getElementsByTagName('enclosure')[0],ds=g('description');
+    return{title:g('title'),link:g('link'),date:toDate(g('pubDate')),desc:ds,img:(en&&en.getAttribute('url'))||(m&&m.getAttribute('url'))||(ds.match(/<img[^>]+src=["']([^"']+)/i)||[])[1]||'',src:s.n,f:s.f}})};
 async function loadNews(){
-  const jobs=NEWS_SRC.flatMap(s=>[viaJson(s).catch(()=>[]),viaXml(s).catch(()=>[])]);
-  const all=(await Promise.all(jobs)).flat(),now=Date.now(),seen=new Set(),out=[];
+  /* Utamakan data lokal hasil GitHub Actions agar tidak bergantung pada CORS di browser. */
+  let local=[];
+  try{const r=await fetch(new URL('news.json',document.baseURI),{cache:'no-store'});if(r.ok){const j=await r.json();if(Array.isArray(j.items))local=j.items.map(a=>({...a,date:toDate(a.date),f:0}));}}catch(e){}
+  const remote=(await Promise.all(NEWS_SRC.flatMap(s=>[viaJson(s).catch(()=>[]),viaXml(s).catch(()=>[])]))).flat();
+  const all=[...local,...remote],now=Date.now(),seen=new Set(),out=[];
   all.filter(a=>a.title&&/^https?:/i.test(a.link)&&a.date&&a.date.getTime()<=now+864e5&&(!a.f||POL.test(a.title+' '+a.desc)))
-    .sort((a,b)=>b.date-a.date)
-    .forEach(a=>{
-      const k=a.link.split('?')[0].replace(/\/$/,'').toLowerCase(),t=a.title.toLowerCase().replace(/\W+/g,' ');
-      if(seen.has(k)||seen.has(t))return;seen.add(k);seen.add(t);out.push(a);
-    });
-  return out.slice(0,NEWS_N);
-}
+     .sort((a,b)=>b.date-a.date)
+     .forEach(a=>{const k=a.link.split('?')[0].replace(/\/$/,'').toLowerCase(),t=a.title.toLowerCase().replace(/\W+/g,' ');if(seen.has(k)||seen.has(t))return;seen.add(k);seen.add(t);out.push(a)});
+  return out.slice(0,NEWS_N)}
 const fmtD=d=>{const t=new Date(),y=new Date(t.getFullYear(),t.getMonth(),t.getDate()-1),same=(a,b)=>a.toDateString()===b.toDateString(),hm=d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}).replace(':','.');
   return same(d,t)?'Hari ini, '+hm:same(d,y)?'Kemarin, '+hm:d.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})};
 const saveNews=l=>{try{localStorage.setItem(NEWS_KEY,JSON.stringify({t:Date.now(),items:l.map(a=>({title:a.title,link:a.link,date:+a.date,desc:String(a.desc).slice(0,300),img:a.img,src:a.src}))}))}catch(e){}};
@@ -890,7 +863,7 @@ async function fetchRealNews(first){const run=++newsRun,st=$('#nstat'),stamp=t=>
   if(list.length){newsAt=Date.now();renderNews(list);saveNews(list);st.textContent='Diperbarui '+stamp(newsAt)+' · '+[...new Set(list.map(a=>a.src))].join(', ');return}
   const c=readNews();
   if(c){renderNews(c.items);st.textContent='Gagal memperbarui. Menampilkan berita tersimpan ('+stamp(c.t)+').'}
-  else{$('#news-container').innerHTML='<p>Berita belum bisa dimuat karena layanan RSS/proxy sedang tidak merespons. Periksa koneksi internet, lalu tekan “muat ulang”.</p>';st.textContent='Sumber berita eksternal sedang tidak tersedia.'}}
+  else{$('#news-container').innerHTML='<p>Gagal memuat berita terkini. Coba tekan “muat ulang”.</p>';st.textContent=''}}
 fetchRealNews(true);
 setInterval(()=>fetchRealNews(),NEWS_EVERY);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-newsAt>NEWS_EVERY/2)fetchRealNews()});
